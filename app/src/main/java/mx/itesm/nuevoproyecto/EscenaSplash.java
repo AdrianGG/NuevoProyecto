@@ -17,6 +17,7 @@ public class EscenaSplash extends EscenaBase {
     @Override
     public void cargarRecursos() {
         regionFondo = cargarImagen("logotec.png");
+
     }
 
     // Arma la escena que se presentará en pantalla
@@ -26,7 +27,7 @@ public class EscenaSplash extends EscenaBase {
         spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA/2, ControlJuego.ALTO_CAMARA/2,
                 regionFondo);
 
-        // Crea el fondo de la pantalla rojo verde azul
+       // Crea el fondo de la pantalla rojo verde azul
         SpriteBackground fondo = new SpriteBackground(.82f, .25f, .68f,spriteFondo);
 
         setBackground(fondo);

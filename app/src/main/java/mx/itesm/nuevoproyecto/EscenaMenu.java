@@ -10,15 +10,21 @@ import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.opengl.texture.region.ITextureRegion;
 
+import java.util.Random;
+
 /**
  * Created by A. iram on 01/10/2015.
  */
 public class EscenaMenu extends EscenaBase {
     // Regiones para las imágenes de la escena
     private ITextureRegion regionFondo;
+    private ITextureRegion regionFondo2;
     private ITextureRegion regionBtnAcercaDe;
     private ITextureRegion regionBtnJugar;
     private ITextureRegion regionBtnInsttrucciones;
+    private ITextureRegion regionBtnAcercaDe2;
+    private ITextureRegion regionBtnJugar2;
+    private ITextureRegion regionBtnInsttrucciones2;
 
 
     // Sprites sobre la escena
@@ -35,21 +41,33 @@ public class EscenaMenu extends EscenaBase {
     private ButtonSprite btnAcercaDe;
     private ButtonSprite btnJugar;
     private ButtonSprite btnInstrucciones;
+     private boolean color = false;
 
-    @Override
     public void cargarRecursos() {
         // Fondo
-        regionFondo = cargarImagen("fondomenu.jpg");
+        regionFondo = cargarImagen("menuiniciorosa.png");
+        regionFondo2= cargarImagen("menuinicioazul.png");
         // Botones del menú
-        regionBtnAcercaDe = cargarImagen("btnacercade.png");
-        regionBtnJugar = cargarImagen("btnjugar.png");
-        regionBtnInsttrucciones= cargarImagen("btinstrucciones.png");
+
+        regionBtnAcercaDe = cargarImagen("bprueba.png");
+        regionBtnJugar = cargarImagen("bprueba.png");
+        regionBtnInsttrucciones= cargarImagen("bprueba.png");
+
+        regionBtnAcercaDe2 = cargarImagen("bprueba2.png");
+        regionBtnJugar2 = cargarImagen("bprueba2.png");
+        regionBtnInsttrucciones2= cargarImagen("bprueba2.png");
+
+
     }
 
     @Override
     public void crearEscena() {
         // Creamos el sprite de manera óptima
-        spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA/2, ControlJuego.ALTO_CAMARA/2, regionFondo);
+        Random rand = new Random();
+        int n = rand.nextInt(20);
+
+        if(n<10){spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA/2, ControlJuego.ALTO_CAMARA/2, regionFondo);}
+        else {spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA/2, ControlJuego.ALTO_CAMARA/2, regionFondo2); color=true;}
 
         // Crea el fondo de la pantalla
         SpriteBackground fondo = new SpriteBackground(1,1,1,spriteFondo);
@@ -65,7 +83,7 @@ public class EscenaMenu extends EscenaBase {
     private void agregarFondoMenu() {
         Rectangle cuadro = new Rectangle(ControlJuego.ANCHO_CAMARA/2, ControlJuego.ALTO_CAMARA/2,
                 0.75f*ControlJuego.ANCHO_CAMARA, 0.75f*ControlJuego.ALTO_CAMARA, actividadJuego.getVertexBufferObjectManager());
-        cuadro.setColor(0.8f, 0.8f, 0.8f, 0.4f);
+        cuadro.setColor(0.1f, 0.1f, 0.1f, 0.1f);
         attachChild(cuadro);
     }
 
@@ -74,13 +92,17 @@ public class EscenaMenu extends EscenaBase {
         menu = new MenuScene(actividadJuego.camara);
         // Centrado en la pantalla
         menu.setPosition(ControlJuego.ANCHO_CAMARA/2,ControlJuego.ALTO_CAMARA/2);
-        // Crea las opciones (por ahora, acerca de y jugar)
-        IMenuItem opcionAcercaDe = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_ACERCA_DE,
-                regionBtnAcercaDe, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
-        IMenuItem opcionJugar = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_JUGAR,
-                regionBtnJugar, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
-        IMenuItem opcionInstrucciones= new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_INSTRUCCIONES,
-                regionBtnInsttrucciones, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
+        // Crea las opciones (por ahora, acerca de y jugar)+
+        ITextureRegion contenedor;
+        if(color==true){ contenedor= regionBtnAcercaDe2;}
+        else{contenedor= regionBtnAcercaDe;}
+            IMenuItem opcionAcercaDe = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_ACERCA_DE,
+                    contenedor, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
+            IMenuItem opcionJugar = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_JUGAR,
+                    contenedor, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
+            IMenuItem opcionInstrucciones = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_INSTRUCCIONES,
+                    contenedor, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
+
 
         // Agrega las opciones al menú
         menu.addMenuItem(opcionAcercaDe);
@@ -92,9 +114,9 @@ public class EscenaMenu extends EscenaBase {
         menu.setBackgroundEnabled(false);   // Completamente transparente
 
         // Ubicar las opciones DENTRO del menú. El centro del menú es (0,0)
-        opcionAcercaDe.setPosition(-200, 0);
-        opcionJugar.setPosition(200, 0);
-        opcionInstrucciones.setPosition(0,-300);
+        opcionAcercaDe.setPosition(-0, -220);
+        opcionJugar.setPosition(0, 27);
+        opcionInstrucciones.setPosition(0,-87);
 
         // Registra el Listener para atender las opciones
         menu.setOnMenuItemClickListener(new MenuScene.IOnMenuItemClickListener() {

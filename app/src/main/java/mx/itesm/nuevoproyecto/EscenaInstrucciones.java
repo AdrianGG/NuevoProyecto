@@ -14,7 +14,7 @@ public class EscenaInstrucciones extends EscenaBase {
 
     @Override
     public void cargarRecursos() {
-        regionFondo = cargarImagen("instrucciones.jpg");
+        regionFondo = cargarImagen("menuinstrucciones.png");
     }
 
     @Override
