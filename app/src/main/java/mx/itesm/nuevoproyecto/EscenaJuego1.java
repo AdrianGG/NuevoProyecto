@@ -75,10 +75,10 @@ public class EscenaJuego1 extends EscenaBase {
                 actividadJuego.getVertexBufferObjectManager());
         personaje.animate(200);
         attachChild(personaje);
-        /*obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300,
+        obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300,
                 ControlJuego.ALTO_CAMARA-250,	regionObstaculo,
                 actividadJuego.getVertexBufferObjectManager());
-        attachChild(obstaculo);*/
+        attachChild(obstaculo);
         ButtonSprite bCamina = new ButtonSprite(100, 100, regionBCamina,
                 actividadJuego.getVertexBufferObjectManager()){
             @Override
@@ -116,7 +116,7 @@ public class EscenaJuego1 extends EscenaBase {
                 float ya = personaje.getY();
                 float xn = xa;
                 float yn = ya;
-                JumpModifier salto = new JumpModifier(1,xa,xn,ya,yn,-200);
+                JumpModifier salto = new JumpModifier(1,xa,xn,ya,yn,-300);
                 ParallelEntityModifier paralelo = new ParallelEntityModifier(salto) {
                     @Override
                     protected void onModifierFinished(IEntity pItem) {
@@ -132,20 +132,27 @@ public class EscenaJuego1 extends EscenaBase {
                         super.onModifierFinished(pItem);
                         personajeSaltando=false;
                     }
-
                 };
                 personaje.registerEntityModifier(paralelo);
                 return super.onAreaTouched(event, x, y);
 
-            }
 
+
+            }
         };
         attachChild(bSalta);
         registerTouchArea(bSalta);
 
 
     }
-
+    @Override
+    protected void onManagedUpdate(float pSecondsElapsed) {
+        super.onManagedUpdate(pSecondsElapsed);
+        if(personaje.collidesWith(obstaculo)){
+            personaje.setX(personaje.getX()-100);
+            personaje.setY(obstaculo.getY()-100);
+        }
+    }
     private TiledTextureRegion cargarImagenMosaico(String archivo,int ancho,int alto,int renglones,int columnas) {
         BuildableBitmapTextureAtlas texturaMosaico= new BuildableBitmapTextureAtlas(actividadJuego.getTextureManager(),ancho,alto);
         TiledTextureRegion region=	BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(texturaMosaico, actividadJuego, archivo, columnas, renglones);
