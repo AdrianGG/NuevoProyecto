@@ -73,7 +73,7 @@ public class EscenaJuego1 extends EscenaBase {
         personaje=new	AnimatedSprite(ControlJuego.ANCHO_CAMARA/4,
                 ControlJuego.ALTO_CAMARA/3,	regionPersonaje,
                 actividadJuego.getVertexBufferObjectManager());
-        personaje.animate(200);
+        personaje.animate(75);
         attachChild(personaje);
         obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300,
                 ControlJuego.ALTO_CAMARA-250,	regionObstaculo,
