@@ -153,17 +153,7 @@ public class EscenaJuego1 extends EscenaBase {
             personaje.setY(obstaculo.getY()-100);
         }
     }
-    private TiledTextureRegion cargarImagenMosaico(String archivo,int ancho,int alto,int renglones,int columnas) {
-        BuildableBitmapTextureAtlas texturaMosaico= new BuildableBitmapTextureAtlas(actividadJuego.getTextureManager(),ancho,alto);
-        TiledTextureRegion region=	BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(texturaMosaico, actividadJuego, archivo, columnas, renglones);
-        texturaMosaico.load();
-        try	{
-            texturaMosaico.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource,BitmapTextureAtlas>(0,	0,	0));
-        }catch(ITextureAtlasBuilder.TextureAtlasBuilderException	e){
-            Log.d("cargarImagenMosaico()", "No	se	puede	cargar	la	imagen:	" + archivo);
-        }
-        return region;
-    }
+    
 
     @Override
     public void onBackKeyPressed() {
