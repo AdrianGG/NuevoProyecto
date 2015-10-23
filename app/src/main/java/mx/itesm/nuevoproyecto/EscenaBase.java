@@ -60,6 +60,18 @@ public abstract class EscenaBase extends Scene {
             }
         };
     }
+    //carga imagenes de los sprites en todas las escenas, se eliminó de escenajuego1
+    protected TiledTextureRegion cargarImagenMosaico(String archivo,int ancho,int alto,int renglones,int columnas) {
+        BuildableBitmapTextureAtlas texturaMosaico= new BuildableBitmapTextureAtlas(actividadJuego.getTextureManager(),ancho,alto);
+        TiledTextureRegion region=	BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(texturaMosaico, actividadJuego, archivo, columnas, renglones);
+        texturaMosaico.load();
+        try	{
+            texturaMosaico.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource,BitmapTextureAtlas>(0,	0,	0));
+        }catch(ITextureAtlasBuilder.TextureAtlasBuilderException	e){
+            Log.d("cargarImagenMosaico()", "No	se	puede	cargar	la	imagen:	" + archivo);
+        }
+        return region;
+    }
 
     // Métodos abstractos
     public abstract void cargarRecursos();  // Carga imágenes/audio/música/videos/etc.
