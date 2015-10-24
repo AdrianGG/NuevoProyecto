@@ -45,6 +45,8 @@ public class ControlJuego extends SimpleBaseGameActivity {
         AdministradorEscenas.inicializarAdministrador(this, mEngine);
         // Obtenemos la referencia al objeto administrador
         admEscenas = AdministradorEscenas.getInstance();
+        //habilita vibración del hw
+        mEngine.enableVibrator(this);
     }
 
     // Regresa la escena inicial.
