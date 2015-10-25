@@ -39,6 +39,11 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private float avanza = 0;
     //cambia imagenes
     private boolean avanzar= false;
+    //Instanciar botones para que sean accesibles en cualquier parte de esta clase
+    public ButtonSprite bCamina;
+    public ButtonSprite bRetrocede;
+    public ButtonSprite bSalta;
+
 
 
 
@@ -76,7 +81,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         attachChild(personaje);
         obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-250,	regionObstaculo,actividadJuego.getVertexBufferObjectManager());
         attachChild(obstaculo);
-        final ButtonSprite bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
+        bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
             @Override
 
             protected void onManagedUpdate(float pSecondsElapsed) {
@@ -104,8 +109,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             }
         };
         attachChild(bCamina);
-        registerTouchArea(bCamina);
-        ButtonSprite bRetrocede = new ButtonSprite(100, 100, regionBRetrocede, actividadJuego.getVertexBufferObjectManager()){
+        bRetrocede = new ButtonSprite(100, 100, regionBRetrocede, actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
                 //Mantiene el boton dentro de la camara
@@ -132,8 +136,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             }
         };
         attachChild(bRetrocede);
-        registerTouchArea(bRetrocede);
-        ButtonSprite bSalta = new ButtonSprite(1200, 100, regionBSalta,actividadJuego.getVertexBufferObjectManager()) {
+
+        bSalta = new ButtonSprite(1200, 100, regionBSalta,actividadJuego.getVertexBufferObjectManager()) {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
                 //Mantiene el boton dentro de la camara
@@ -184,12 +188,13 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             }
         };
             attachChild(bSalta);
-            registerTouchArea(bSalta);
-    }
 
+    }
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
-
+        registerTouchArea(bCamina);
+        registerTouchArea(bRetrocede);
+        registerTouchArea(bSalta);
         //Movimiento de izquierda a derecha
         super.onManagedUpdate(pSecondsElapsed);
         px = (float) (personaje.getX()+avanza);
