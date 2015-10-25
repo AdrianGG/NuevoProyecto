@@ -80,12 +80,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-450,	regionObstaculo,actividadJuego.getVertexBufferObjectManager());
         attachChild(obstaculo);
         bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
-            @Override
 
-            protected void onManagedUpdate(float pSecondsElapsed) {
-                //Mantiene el boton dentro de la camara
-                this.setPosition(ControlJuego.camara.getCenterX() - 390, ControlJuego.camara.getCenterY()- 300);
-            }
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
@@ -109,11 +104,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         bCamina.setScale(0.5f,0.5f);
         attachChild(bCamina);
         bRetrocede = new ButtonSprite(100, 100, regionBRetrocede, actividadJuego.getVertexBufferObjectManager()){
-            @Override
-            protected void onManagedUpdate(float pSecondsElapsed) {
-                //Mantiene el boton dentro de la camara
-                this.setPosition(ControlJuego.camara.getCenterX()-500,ControlJuego.camara.getCenterY()-300);
-            }
+
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
@@ -138,11 +129,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         attachChild(bRetrocede);
 
         bSalta = new ButtonSprite(1200, 100, regionBSalta,actividadJuego.getVertexBufferObjectManager()) {
-            @Override
-            protected void onManagedUpdate(float pSecondsElapsed) {
-                //Mantiene el boton dentro de la camara
-                this.setPosition(ControlJuego.camara.getCenterX()+500,ControlJuego.camara.getCenterY()-300);
-            }
+
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
@@ -211,6 +198,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //---------------------------------
         //Esto sigue al personaje, asegurarse que los controles se queden dentro de la camara
         ControlJuego.camara.setChaseEntity(personaje);
+        bCamina.setPosition(ControlJuego.camara.getCenterX() - 390, ControlJuego.camara.getCenterY() - 300);
+        bRetrocede.setPosition(ControlJuego.camara.getCenterX()-500,ControlJuego.camara.getCenterY()-300);
+        bSalta.setPosition(ControlJuego.camara.getCenterX()+500,ControlJuego.camara.getCenterY()-300);
         //-------------------------------------------------------------------------------------------------
 
         if(personaje.collidesWith(obstaculo)){
