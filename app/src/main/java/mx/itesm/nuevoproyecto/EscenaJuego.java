@@ -2,7 +2,6 @@ package mx.itesm.nuevoproyecto;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.util.debug.Debug;
 
 /**
  * Created by A. iram on 01/10/2015.
@@ -22,9 +21,13 @@ public class EscenaJuego extends EscenaBase {
 
       //  regionFondo = cargarImagen("escenasiguiente.jpg");
         regionSlides = new ITextureRegion[16];
-        regionSlides[0]=cargarImagen("creditos.jpg");
-        regionSlides[1] = cargarImagen("escenasiguiente.jpg");
-        regionSlides[2] = cargarImagen("fondomenu.jpg");
+        regionSlides[0] = cargarImagen("juego1.jpg");
+        regionSlides[1] = cargarImagen("juego2.jpg");
+        regionSlides[2] = cargarImagen("juego3.jpg");
+        regionSlides[3] = cargarImagen("juego4.jpg");
+        regionSlides[4] = cargarImagen("juego5.jpg");
+        regionSlides[5] = cargarImagen("juego6.jpg");
+
         regionSlideActual=regionSlides[0];
 
 
@@ -45,7 +48,7 @@ public class EscenaJuego extends EscenaBase {
     {
         if (pSceneTouchEvent.isActionDown())
         {
-            if(contador<2){
+            if(contador<5){
                 contador++;
                 regionSlideActual=regionSlides[contador];
                 spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
