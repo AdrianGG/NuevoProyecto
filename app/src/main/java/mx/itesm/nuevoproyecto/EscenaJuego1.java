@@ -1,14 +1,11 @@
 package mx.itesm.nuevoproyecto;
 
-import android.util.Log;
 import android.view.MotionEvent;
 
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.JumpModifier;
-import org.andengine.entity.modifier.MoveModifier;
 import org.andengine.entity.modifier.ParallelEntityModifier;
 import org.andengine.entity.scene.IOnAreaTouchListener;
-import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.background.AutoParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground;
@@ -16,14 +13,7 @@ import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.opengl.texture.atlas.bitmap.BuildableBitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSource;
-import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtlasBuilder;
-import org.andengine.opengl.texture.atlas.buildable.builder.ITextureAtlasBuilder;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 /**
@@ -32,9 +22,9 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionFondo;
     private TiledTextureRegion regionPersonaje;
-    private ITiledTextureRegion regionBCamina;
-    private ITiledTextureRegion regionBRetrocede;
-    private ITiledTextureRegion regionBSalta;
+    private ITextureRegion regionBCamina;
+    private ITextureRegion regionBRetrocede;
+    private ITextureRegion regionBSalta;
     //private ITextureRegion regionPersonaje;
     private Sprite spriteFondo;
     private ITextureRegion regionObstaculo;
@@ -62,9 +52,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
        // regionPersonaje=cargarImagen("personaje.jpg");
         regionObstaculo= cargarImagen("obstaculo.png");
         regionPersonaje= cargarImagenMosaico("personajeStand.png",1268,200,1, 5);
-        regionBCamina= cargarImagenMosaico("botoncamina.png",204,40,1,2);
-        regionBRetrocede= cargarImagenMosaico("botoncamina.png",204,40,1,2);
-        regionBSalta= cargarImagenMosaico("botonsalta.png",40,204,2,1);
+        regionBCamina= cargarImagen("boton2.png");
+        regionBRetrocede= cargarImagen("boton3.png");
+        regionBSalta= cargarImagen("boton1.png");
 
     }
 
@@ -113,7 +103,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         };
         attachChild(bCamina);
         registerTouchArea(bCamina);
-        ButtonSprite bRetrocede = new ButtonSprite(100, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
+        ButtonSprite bRetrocede = new ButtonSprite(100, 100, regionBRetrocede, actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
                 //Mantiene el boton dentro de la camara
