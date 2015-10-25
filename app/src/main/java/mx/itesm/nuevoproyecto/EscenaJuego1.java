@@ -108,6 +108,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 return super.onAreaTouched(event, x, y);
             }
         };
+        bCamina.setScale(0.5f,0.5f);
         attachChild(bCamina);
         bRetrocede = new ButtonSprite(100, 100, regionBRetrocede, actividadJuego.getVertexBufferObjectManager()){
             @Override
@@ -135,6 +136,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 return super.onAreaTouched(event, x, y);
             }
         };
+        bRetrocede.setScale(0.5f,0.5f);
         attachChild(bRetrocede);
 
         bSalta = new ButtonSprite(1200, 100, regionBSalta,actividadJuego.getVertexBufferObjectManager()) {
@@ -187,7 +189,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
             }
         };
-            attachChild(bSalta);
+        bSalta.setScale(0.5f,0.5f);
+        attachChild(bSalta);
 
     }
     @Override
