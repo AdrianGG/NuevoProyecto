@@ -37,6 +37,8 @@ public class ControlJuego extends SimpleBaseGameActivity {
 
         return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED,
                 new FillResolutionPolicy(), camara);
+
+
     }
 
     // Crea los recursos del juego.
@@ -48,6 +50,7 @@ public class ControlJuego extends SimpleBaseGameActivity {
         admEscenas = AdministradorEscenas.getInstance();
         //habilita vibración del hw
         mEngine.enableVibrator(this);
+
     }
 
     // Regresa la escena inicial.

@@ -52,6 +52,7 @@ public class AdministradorEscenas {
      */
     private void setEscenaBase(EscenaBase nueva) {
         engine.setScene(nueva);
+
         escenaActual = nueva;
         tipoEscenaActual = nueva.getTipoEscena();
     }
