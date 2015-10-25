@@ -198,9 +198,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //---------------------------------
         //Esto sigue al personaje, asegurarse que los controles se queden dentro de la camara
         ControlJuego.camara.setChaseEntity(personaje);
-        bCamina.setPosition(ControlJuego.camara.getCenterX() - 390, ControlJuego.camara.getCenterY() - 300);
-        bRetrocede.setPosition(ControlJuego.camara.getCenterX()-500,ControlJuego.camara.getCenterY()-300);
-        bSalta.setPosition(ControlJuego.camara.getCenterX()+500,ControlJuego.camara.getCenterY()-300);
+        bCamina.setPosition(personaje.getX() - 390, personaje.getY() - 300);
+        bRetrocede.setPosition(personaje.getX()-500,personaje.getY()-300);
+        bSalta.setPosition(personaje.getX() + 500, personaje.getY()-300);
         //-------------------------------------------------------------------------------------------------
 
         if(personaje.collidesWith(obstaculo)){
