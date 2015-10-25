@@ -43,7 +43,6 @@ public class EscenaJuego1 extends EscenaBase {
     //variables para el control
     private float px = 0;
     private float avanza = 0;
-    private float retrocede = 0;
     private ITextureRegion regionControlBase;
     private ITextureRegion regionControlBoton;
     public int altoPersonaje= 158;
@@ -89,6 +88,8 @@ public class EscenaJuego1 extends EscenaBase {
                 // Responder al touch del botón
                 if (event.isActionDown())
                 {
+                    //El personaje mira hacia la derecha cuando se mueve a esa direccion
+                    personaje.setScale(Math.abs(personaje.getScaleX()),personaje.getScaleY());
                     avanza = 10f;
                 }
                 else
@@ -109,6 +110,8 @@ public class EscenaJuego1 extends EscenaBase {
                 // Responder al touch del botón
                 if (event.isActionDown())
                 {
+                    //El personaje mira hacia la izquierda cuando se mueve a esa direccion
+                    personaje.setScale(-Math.abs(personaje.getScaleX()),personaje.getScaleY());
                     avanza = -10f;
                 }
                 else
