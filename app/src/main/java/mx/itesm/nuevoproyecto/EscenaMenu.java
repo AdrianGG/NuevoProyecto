@@ -49,13 +49,13 @@ public class EscenaMenu extends EscenaBase {
         regionFondo2= cargarImagen("menuinicioazul.png");
         // Botones del menú
 
-        regionBtnAcercaDe = cargarImagen("bprueba.png");
-        regionBtnJugar = cargarImagen("bprueba.png");
-        regionBtnInsttrucciones= cargarImagen("bprueba.png");
+        regionBtnAcercaDe = cargarImagen("botonrosamenu.png");
+        regionBtnJugar = cargarImagen("botonrosamenu.png");
+        regionBtnInsttrucciones= cargarImagen("botonrosamenu.png");
 
-        regionBtnAcercaDe2 = cargarImagen("bprueba2.png");
-        regionBtnJugar2 = cargarImagen("bprueba2.png");
-        regionBtnInsttrucciones2= cargarImagen("bprueba2.png");
+        regionBtnAcercaDe2 = cargarImagen("botonazulmenu.png");
+        regionBtnJugar2 = cargarImagen("botonazulmenu.png");
+        regionBtnInsttrucciones2= cargarImagen("botonazulmenu.png");
 
 
     }

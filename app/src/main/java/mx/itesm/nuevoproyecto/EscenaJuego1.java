@@ -22,6 +22,7 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionFondo;
     private TiledTextureRegion regionPersonaje;
+    private TiledTextureRegion regionPersonajeC;
     private ITextureRegion regionBCamina;
     private ITextureRegion regionBRetrocede;
     private ITextureRegion regionBSalta;
@@ -36,21 +37,19 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     //variables para el control
     private float px = 0;
     private float avanza = 0;
-    private ITextureRegion regionControlBase;
-    private ITextureRegion regionControlBoton;
-    public int altoPersonaje= 158;
-    public int anchoPersonaje= 600;
-    public int columnasPersonaje = 4;
+    //cambia imagenes
+    private boolean avanzar= false;
+
 
 
 
     @Override
     public void cargarRecursos() {
-        regionControlBase = cargarImagen("control.png");
-        regionControlBoton= cargarImagen("botonControl.png");
+
         regionFondo = cargarImagen("prueba.jpg");
        // regionPersonaje=cargarImagen("personaje.jpg");
         regionObstaculo= cargarImagen("obstaculo.png");
+        regionPersonajeC= cargarImagenMosaico("personajeCorrer.png",1893,200,1,8 );
         regionPersonaje= cargarImagenMosaico("personajeStand.png",1268,200,1, 5);
         regionBCamina= cargarImagen("boton2.png");
         regionBRetrocede= cargarImagen("boton3.png");
@@ -70,7 +69,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         fondoAnimado.attachParallaxEntity(new ParallaxBackground.ParallaxEntity(-3, spriteFondo));
         setBackground(fondoAnimado);
         setBackgroundEnabled(true);
-        personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
+        personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonajeC, actividadJuego.getVertexBufferObjectManager());
+       // personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
         // Animacion Idle del personaje
         personaje.animate(100);
         attachChild(personaje);
@@ -78,6 +78,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         attachChild(obstaculo);
         final ButtonSprite bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
             @Override
+
             protected void onManagedUpdate(float pSecondsElapsed) {
                 //Mantiene el boton dentro de la camara
                 this.setPosition(ControlJuego.camara.getCenterX() - 390, ControlJuego.camara.getCenterY()- 200);
@@ -87,6 +88,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 // Responder al touch del botón
                 if (event.isActionDown())
                 {
+                    avanzar=true;
                     //El personaje mira hacia la derecha cuando se mueve a esa direccion
                     personaje.setScale(Math.abs(personaje.getScaleX()),personaje.getScaleY());
                     avanza = 10f;
@@ -114,6 +116,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 // Responder al touch del botón
                 if (event.isActionDown())
                 {
+                    avanzar=true;
                     //El personaje mira hacia la izquierda cuando se mueve a esa direccion
                     personaje.setScale(-Math.abs(personaje.getScaleX()),personaje.getScaleY());
                     avanza = -10f;
