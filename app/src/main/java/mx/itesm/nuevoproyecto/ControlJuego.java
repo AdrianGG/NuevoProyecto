@@ -34,9 +34,9 @@ public class ControlJuego extends SimpleBaseGameActivity {
     @Override
     public EngineOptions onCreateEngineOptions() {
         camara = new Camera(0,0,ANCHO_CAMARA,ALTO_CAMARA);
-
-        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED,
-                new FillResolutionPolicy(), camara);
+        EngineOptions OpcionesEngine = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FillResolutionPolicy(), camara);
+        OpcionesEngine.getTouchOptions().setNeedsMultiTouch(true);
+        return OpcionesEngine;
 
 
     }
