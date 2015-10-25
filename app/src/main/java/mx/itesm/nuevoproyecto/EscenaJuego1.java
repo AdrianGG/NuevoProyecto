@@ -37,8 +37,6 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     //variables para el control
     private float px = 0;
     private float avanza = 0;
-    //cambia imagenes
-    private boolean avanzar= false;
     //Instanciar botones para que sean accesibles en cualquier parte de esta clase
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
@@ -93,7 +91,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 // Responder al touch del botón
                 if (event.isActionDown())
                 {
-                    avanzar=true;
+
                     //El personaje mira hacia la derecha cuando se mueve a esa direccion
                     personaje.setScale(Math.abs(personaje.getScaleX()),personaje.getScaleY());
                     avanza = 10f;
@@ -121,7 +119,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 // Responder al touch del botón
                 if (event.isActionDown())
                 {
-                    avanzar=true;
+
                     //El personaje mira hacia la izquierda cuando se mueve a esa direccion
                     personaje.setScale(-Math.abs(personaje.getScaleX()),personaje.getScaleY());
                     avanza = -10f;
@@ -151,11 +149,11 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
                 if (event.getAction()==MotionEvent.ACTION_DOWN&&!personajeSaltando) {
                     // Saltar
-                    float xa = personaje.getX();
+                    float xa = personaje.getX()+avanza;
                     float ya = personaje.getY();
                     float xn = xa;
                     float yn = ya;
-                    JumpModifier salto = new JumpModifier(1, xa, px, ya, yn, -300);
+                    JumpModifier salto = new JumpModifier(1, xa, xn, ya, yn, -300);
                     personajeSaltando = true;
                     /*
                     //Maneja la animacion durante el salto
@@ -164,9 +162,13 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                         tiempos[i] = 0;
                     }
                     */
+                    registerTouchArea(bCamina);
+                    registerTouchArea(bRetrocede);
+
                     ParallelEntityModifier paralelo = new ParallelEntityModifier(salto) {
                         @Override
                         protected void onModifierFinished(IEntity pItem) {
+
                         /*
                         //Aqui cambian la animacion del personaje cuando cae
                         long tiempos[] = new long[8];
@@ -201,11 +203,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //Movimiento de izquierda a derecha
         super.onManagedUpdate(pSecondsElapsed);
         px = (float) (personaje.getX()+avanza);
+        personaje.setPosition(px,personaje.getY());
         //---------------------------------
         //Esto sigue al personaje, asegurarse que los controles se queden dentro de la camara
         ControlJuego.camara.setChaseEntity(personaje);
         //-------------------------------------------------------------------------------------------------
-        personaje.setPosition(px,personaje.getY());
+
         if(personaje.collidesWith(obstaculo)){
             personaje.setX(personaje.getX()-100);
             personaje.setY(obstaculo.getY()-100);
