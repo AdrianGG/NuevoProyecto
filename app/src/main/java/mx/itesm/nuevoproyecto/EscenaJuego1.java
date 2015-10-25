@@ -179,6 +179,7 @@ public class EscenaJuego1 extends EscenaBase {
     protected void onManagedUpdate(float pSecondsElapsed) {
         super.onManagedUpdate(pSecondsElapsed);
         px = (float) (personaje.getX()+avanza);
+
         personaje.setPosition(px,personaje.getY());
         if(personaje.collidesWith(obstaculo)){
             personaje.setX(personaje.getX()-100);
