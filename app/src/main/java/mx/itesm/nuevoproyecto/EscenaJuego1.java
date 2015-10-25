@@ -21,6 +21,7 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
  */
 public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionFondo;
+    private ITextureRegion regionPiso;
     private TiledTextureRegion regionPersonaje;
     private TiledTextureRegion regionPersonajeC;
     private ITextureRegion regionBCamina;
@@ -28,6 +29,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionBSalta;
     //private ITextureRegion regionPersonaje;
     private Sprite spriteFondo;
+    private Sprite spritePiso;
     private ITextureRegion regionObstaculo;
 
    // private AnimatedSprite personaje;
@@ -50,6 +52,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public void cargarRecursos() {
 
         regionFondo = cargarImagen("prueba.jpg");
+        regionPiso= cargarImagen("pisoRosa.png");
        // regionPersonaje=cargarImagen("personaje.jpg");
         regionObstaculo= cargarImagen("obstaculo.png");
         regionPersonajeC= cargarImagenMosaico("personajeCorrer.png",1893,200,1,8 );
@@ -65,20 +68,23 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public void crearEscena() {
 
         spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionFondo);
+
        // agregarPersonaje(spriteFondo);
         //attachChild(spriteFondo);
-
         AutoParallaxBackground fondoAnimado	=	new	AutoParallaxBackground(0,0,0,10);
         fondoAnimado.attachParallaxEntity(new ParallaxBackground.ParallaxEntity(-3, spriteFondo));
         setBackground(fondoAnimado);
         setBackgroundEnabled(true);
+
         personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonajeC, actividadJuego.getVertexBufferObjectManager());
        // personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
         // Animacion Idle del personaje
         personaje.animate(100);
         attachChild(personaje);
+        spritePiso= new Sprite(1,ControlJuego.ALTO_CAMARA/6,regionPiso,actividadJuego.getVertexBufferObjectManager());
         obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-450,	regionObstaculo,actividadJuego.getVertexBufferObjectManager());
         attachChild(obstaculo);
+        attachChild(spritePiso);
         bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
 
             @Override
