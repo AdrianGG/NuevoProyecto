@@ -41,7 +41,7 @@ public abstract class EscenaBase extends Scene {
 
 
     // Método auxiliar para cargar las imágenes de las regiones
-    protected ITextureRegion cargarImagen(String archivo) {
+    public ITextureRegion cargarImagen(String archivo) {
 
         ITextureRegion region = null;
         try {
