@@ -7,6 +7,9 @@ import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.JumpModifier;
 import org.andengine.entity.modifier.MoveModifier;
 import org.andengine.entity.modifier.ParallelEntityModifier;
+import org.andengine.entity.scene.IOnAreaTouchListener;
+import org.andengine.entity.scene.IOnSceneTouchListener;
+import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.background.AutoParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.sprite.AnimatedSprite;
@@ -26,7 +29,7 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 /**
  * Created by A. iram on 02/10/2015.
  */
-public class EscenaJuego1 extends EscenaBase {
+public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionFondo;
     private TiledTextureRegion regionPersonaje;
     private ITiledTextureRegion regionBCamina;
@@ -68,6 +71,7 @@ public class EscenaJuego1 extends EscenaBase {
 
     @Override
     public void crearEscena() {
+
         spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionFondo);
        // agregarPersonaje(spriteFondo);
         //attachChild(spriteFondo);
@@ -183,6 +187,7 @@ public class EscenaJuego1 extends EscenaBase {
 
                 }
                 return super.onAreaTouched(event, x, y);
+
             }
         };
             attachChild(bSalta);
@@ -191,6 +196,7 @@ public class EscenaJuego1 extends EscenaBase {
 
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
+
         //Movimiento de izquierda a derecha
         super.onManagedUpdate(pSecondsElapsed);
         px = (float) (personaje.getX()+avanza);
@@ -235,5 +241,10 @@ public class EscenaJuego1 extends EscenaBase {
     public void liberarRecursos() {
         regionFondo.getTexture().unload();
         regionFondo = null;
+    }
+
+    @Override
+    public boolean onAreaTouched(TouchEvent pSceneTouchEvent, ITouchArea pTouchArea, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+        return true;
     }
 }
