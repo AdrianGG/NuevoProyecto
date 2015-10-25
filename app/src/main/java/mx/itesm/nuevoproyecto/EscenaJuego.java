@@ -2,6 +2,7 @@ package mx.itesm.nuevoproyecto;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.region.ITextureRegion;
+import org.andengine.util.debug.Debug;
 
 /**
  * Created by A. iram on 01/10/2015.
@@ -18,6 +19,7 @@ public class EscenaJuego extends EscenaBase {
     
     @Override
     public void cargarRecursos() {
+
       //  regionFondo = cargarImagen("escenasiguiente.jpg");
         regionSlides = new ITextureRegion[16];
         regionSlides[0]=cargarImagen("creditos.jpg");
@@ -30,6 +32,7 @@ public class EscenaJuego extends EscenaBase {
 
     @Override
     public void crearEscena() {
+
       //  spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionFondo);
        // attachChild(spriteFondo);
         spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);

@@ -21,7 +21,7 @@ public class ControlJuego extends SimpleBaseGameActivity {
     public static final int ANCHO_CAMARA = 1280;
     public static final int ALTO_CAMARA = 800;
     // La cámara
-    protected Camera camara;
+    public static Camera camara;
     // El administrador de escenas (se encarga de cambiar las escenas)
     private AdministradorEscenas admEscenas;
 
@@ -34,6 +34,7 @@ public class ControlJuego extends SimpleBaseGameActivity {
     @Override
     public EngineOptions onCreateEngineOptions() {
         camara = new Camera(0,0,ANCHO_CAMARA,ALTO_CAMARA);
+
         return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED,
                 new FillResolutionPolicy(), camara);
     }

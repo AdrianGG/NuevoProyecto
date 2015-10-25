@@ -82,7 +82,11 @@ public class EscenaJuego1 extends EscenaBase {
         attachChild(personaje);
         obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-250,	regionObstaculo,actividadJuego.getVertexBufferObjectManager());
         attachChild(obstaculo);
-        ButtonSprite bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
+        final ButtonSprite bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                this.setPosition(ControlJuego.camara.getCenterX() - 390, ControlJuego.camara.getCenterY()- 200);
+            }
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
@@ -106,6 +110,10 @@ public class EscenaJuego1 extends EscenaBase {
         registerTouchArea(bCamina);
         ButtonSprite bRetrocede = new ButtonSprite(100, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
             @Override
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                this.setPosition(ControlJuego.camara.getCenterX()-500,ControlJuego.camara.getCenterY()-200);
+            }
+            @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
                 if (event.isActionDown())
@@ -126,8 +134,11 @@ public class EscenaJuego1 extends EscenaBase {
         };
         attachChild(bRetrocede);
         registerTouchArea(bRetrocede);
-        ButtonSprite bSalta = new ButtonSprite(1200, 100, regionBSalta,
-                actividadJuego.getVertexBufferObjectManager()) {
+        ButtonSprite bSalta = new ButtonSprite(1200, 100, regionBSalta,actividadJuego.getVertexBufferObjectManager()) {
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                this.setPosition(ControlJuego.camara.getCenterX()+500,ControlJuego.camara.getCenterY()-200);
+            }
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
@@ -177,9 +188,13 @@ public class EscenaJuego1 extends EscenaBase {
 
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
+        //Movimiento de izquierda a derecha
         super.onManagedUpdate(pSecondsElapsed);
         px = (float) (personaje.getX()+avanza);
-
+        //---------------------------------
+        //Esto sigue al personaje, también debemos de hacer que los controles se queden dentro de la camara
+        ControlJuego.camara.setChaseEntity(personaje);
+        //-------------------------------------------------------------------------------------------------
         personaje.setPosition(px,personaje.getY());
         if(personaje.collidesWith(obstaculo)){
             personaje.setX(personaje.getX()-100);
@@ -203,6 +218,11 @@ public class EscenaJuego1 extends EscenaBase {
 
     @Override
     public void liberarEscena() {
+        //Estas dos condiciones resetean el centro de la cámara para que otras escenas no se queden con el
+        //de esta. NOTAS: se debe respetar el orden, se espera que esté al liberar las escenas de todos los niveles
+        ControlJuego.camara.setChaseEntity(null);
+        ControlJuego.camara.setCenter(ControlJuego.ANCHO_CAMARA/2,ControlJuego.ALTO_CAMARA/2);
+        //---------------------------------------------------------------------------------------------------------
         this.detachSelf();
         this.dispose();
 
