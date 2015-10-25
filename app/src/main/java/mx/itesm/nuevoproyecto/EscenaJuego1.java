@@ -1,9 +1,11 @@
 package mx.itesm.nuevoproyecto;
 
 import android.util.Log;
+import android.view.MotionEvent;
 
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.JumpModifier;
+import org.andengine.entity.modifier.MoveModifier;
 import org.andengine.entity.modifier.ParallelEntityModifier;
 import org.andengine.entity.scene.background.AutoParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground;
@@ -28,16 +30,20 @@ public class EscenaJuego1 extends EscenaBase {
     private ITextureRegion regionFondo;
     private TiledTextureRegion regionPersonaje;
     private ITiledTextureRegion regionBCamina;
+    private ITiledTextureRegion regionBRetrocede;
     private ITiledTextureRegion regionBSalta;
     //private ITextureRegion regionPersonaje;
     private Sprite spriteFondo;
     private ITextureRegion regionObstaculo;
 
    // private AnimatedSprite personaje;
-    private boolean personajeSaltando=true;
+    private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
     private Sprite obstaculo;
     //variables para el control
+    private float px = 0;
+    private float avanza = 0;
+    private float retrocede = 0;
     private ITextureRegion regionControlBase;
     private ITextureRegion regionControlBoton;
     public int altoPersonaje= 158;
@@ -53,8 +59,9 @@ public class EscenaJuego1 extends EscenaBase {
         regionFondo = cargarImagen("prueba.jpg");
        // regionPersonaje=cargarImagen("personaje.jpg");
         regionObstaculo= cargarImagen("obstaculo.png");
-        regionPersonaje= cargarImagenMosaico("personaje2.png",3276,350,1, 10);
+        regionPersonaje= cargarImagenMosaico("personajeStand.png",1268,200,1, 5);
         regionBCamina= cargarImagenMosaico("botoncamina.png",204,40,1,2);
+        regionBRetrocede= cargarImagenMosaico("botoncamina.png",204,40,1,2);
         regionBSalta= cargarImagenMosaico("botonsalta.png",40,204,2,1);
 
     }
@@ -67,59 +74,79 @@ public class EscenaJuego1 extends EscenaBase {
         //attachChild(spriteFondo);
 
         AutoParallaxBackground fondoAnimado	=	new	AutoParallaxBackground(0,0,0,10);
-        fondoAnimado.attachParallaxEntity(new ParallaxBackground.ParallaxEntity(-3,spriteFondo));
+        fondoAnimado.attachParallaxEntity(new ParallaxBackground.ParallaxEntity(-3, spriteFondo));
         setBackground(fondoAnimado);
         setBackgroundEnabled(true);
-        personaje=new	AnimatedSprite(ControlJuego.ANCHO_CAMARA/4,
-                ControlJuego.ALTO_CAMARA/3,	regionPersonaje,
-                actividadJuego.getVertexBufferObjectManager());
-        personaje.animate(75);
+        personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
+        // Animacion Idle del personaje
+        personaje.animate(100);
         attachChild(personaje);
-        obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300,
-                ControlJuego.ALTO_CAMARA-250,	regionObstaculo,
-                actividadJuego.getVertexBufferObjectManager());
+        obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-250,	regionObstaculo,actividadJuego.getVertexBufferObjectManager());
         attachChild(obstaculo);
-        ButtonSprite bCamina = new ButtonSprite(100, 100, regionBCamina,
-                actividadJuego.getVertexBufferObjectManager()){
+        ButtonSprite bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
-                float xa = personaje.getX();
-                float ya = personaje.getY();
-                float xn = xa;
-                float yn = ya;
-                //pModifier corre = new JumpModifier(1,xa,xa+10,ya,ya,-100);
-                JumpModifier corre = new JumpModifier(0.3f,xa,xn+30,ya,ya,0);
-                ParallelEntityModifier paralelo = new ParallelEntityModifier(corre) {
-                    @Override
-
-                    protected void onModifierFinished(IEntity pItem) {
-
-                        super.onModifierFinished(pItem);
-
+                if (event.isActionDown())
+                {
+                    avanza = 10f;
+                }
+                else
+                {
+                    if(event.isActionUp()) {
+                        avanza = 0;
                     }
-                };
-                personaje.registerEntityModifier(paralelo);
+                }
+
                 return super.onAreaTouched(event, x, y);
             }
         };
         attachChild(bCamina);
         registerTouchArea(bCamina);
-        ButtonSprite bSalta = new ButtonSprite(100, 200, regionBSalta,
-                actividadJuego.getVertexBufferObjectManager()){
+        ButtonSprite bRetrocede = new ButtonSprite(100, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
-                personajeSaltando=true;
-                // Saltar
-                float xa = personaje.getX();
-                float ya = personaje.getY();
-                float xn = xa;
-                float yn = ya;
-                JumpModifier salto = new JumpModifier(1,xa,xn,ya,yn,-300);
-                ParallelEntityModifier paralelo = new ParallelEntityModifier(salto) {
-                    @Override
-                    protected void onModifierFinished(IEntity pItem) {
+                if (event.isActionDown())
+                {
+                    avanza = -10f;
+                }
+                else
+                {
+                    if(event.isActionUp()) {
+                        avanza = 0;
+                    }
+                }
+
+                return super.onAreaTouched(event, x, y);
+            }
+        };
+        attachChild(bRetrocede);
+        registerTouchArea(bRetrocede);
+        ButtonSprite bSalta = new ButtonSprite(1200, 100, regionBSalta,
+                actividadJuego.getVertexBufferObjectManager()) {
+            @Override
+            public boolean onAreaTouched(TouchEvent event, float x, float y) {
+                // Responder al touch del botón
+
+                if (event.getAction()==MotionEvent.ACTION_DOWN&&!personajeSaltando) {
+                    // Saltar
+                    float xa = personaje.getX();
+                    float ya = personaje.getY();
+                    float xn = xa;
+                    float yn = ya;
+                    JumpModifier salto = new JumpModifier(1, xa, px, ya, yn, -300);
+                    personajeSaltando = true;
+                    /*
+                    //Maneja la animacion durante el salto
+                    long tiempos[] = new long[2];
+                    for (int i = 0; i < tiempos.length; i++) {
+                        tiempos[i] = 0;
+                    }
+                    */
+                    ParallelEntityModifier paralelo = new ParallelEntityModifier(salto) {
+                        @Override
+                        protected void onModifierFinished(IEntity pItem) {
                         /*
                         //Aqui cambian la animacion del personaje cuando cae
                         long tiempos[] = new long[8];
@@ -129,25 +156,27 @@ public class EscenaJuego1 extends EscenaBase {
                         }
                         personaje.animate(tiempos,0,tiempos.length-1,true);
                         */
-                        super.onModifierFinished(pItem);
-                        personajeSaltando=false;
-                    }
-                };
-                personaje.registerEntityModifier(paralelo);
+
+                            super.onModifierFinished(pItem);
+                            personajeSaltando = false;
+                        }
+                    };
+                    personaje.registerEntityModifier(paralelo);
+                } else {
+
+                }
                 return super.onAreaTouched(event, x, y);
-
-
-
             }
         };
-        attachChild(bSalta);
-        registerTouchArea(bSalta);
-
-
+            attachChild(bSalta);
+            registerTouchArea(bSalta);
     }
+
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
         super.onManagedUpdate(pSecondsElapsed);
+        px = (float) (personaje.getX()+avanza);
+        personaje.setPosition(px,personaje.getY());
         if(personaje.collidesWith(obstaculo)){
             personaje.setX(personaje.getX()-100);
             personaje.setY(obstaculo.getY()-100);
