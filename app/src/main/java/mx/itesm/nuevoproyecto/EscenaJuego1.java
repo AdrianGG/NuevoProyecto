@@ -85,6 +85,7 @@ public class EscenaJuego1 extends EscenaBase {
         final ButtonSprite bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
+                //Mantiene el boton dentro de la camara
                 this.setPosition(ControlJuego.camara.getCenterX() - 390, ControlJuego.camara.getCenterY()- 200);
             }
             @Override
@@ -111,6 +112,7 @@ public class EscenaJuego1 extends EscenaBase {
         ButtonSprite bRetrocede = new ButtonSprite(100, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
+                //Mantiene el boton dentro de la camara
                 this.setPosition(ControlJuego.camara.getCenterX()-500,ControlJuego.camara.getCenterY()-200);
             }
             @Override
@@ -137,6 +139,7 @@ public class EscenaJuego1 extends EscenaBase {
         ButtonSprite bSalta = new ButtonSprite(1200, 100, regionBSalta,actividadJuego.getVertexBufferObjectManager()) {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
+                //Mantiene el boton dentro de la camara
                 this.setPosition(ControlJuego.camara.getCenterX()+500,ControlJuego.camara.getCenterY()-200);
             }
             @Override
@@ -192,7 +195,7 @@ public class EscenaJuego1 extends EscenaBase {
         super.onManagedUpdate(pSecondsElapsed);
         px = (float) (personaje.getX()+avanza);
         //---------------------------------
-        //Esto sigue al personaje, también debemos de hacer que los controles se queden dentro de la camara
+        //Esto sigue al personaje, asegurarse que los controles se queden dentro de la camara
         ControlJuego.camara.setChaseEntity(personaje);
         //-------------------------------------------------------------------------------------------------
         personaje.setPosition(px,personaje.getY());
@@ -219,7 +222,7 @@ public class EscenaJuego1 extends EscenaBase {
     @Override
     public void liberarEscena() {
         //Estas dos condiciones resetean el centro de la cámara para que otras escenas no se queden con el
-        //de esta. NOTAS: se debe respetar el orden, se espera que esté al liberar las escenas de todos los niveles
+        //de esta. NOTAS: se debe respetar el orden, se espera que este al liberar las escenas de todos los niveles
         ControlJuego.camara.setChaseEntity(null);
         ControlJuego.camara.setCenter(ControlJuego.ANCHO_CAMARA/2,ControlJuego.ALTO_CAMARA/2);
         //---------------------------------------------------------------------------------------------------------
