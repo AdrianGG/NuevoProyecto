@@ -77,14 +77,14 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         // Animacion Idle del personaje
         personaje.animate(100);
         attachChild(personaje);
-        obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-250,	regionObstaculo,actividadJuego.getVertexBufferObjectManager());
+        obstaculo =new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-450,	regionObstaculo,actividadJuego.getVertexBufferObjectManager());
         attachChild(obstaculo);
         bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
             @Override
 
             protected void onManagedUpdate(float pSecondsElapsed) {
                 //Mantiene el boton dentro de la camara
-                this.setPosition(ControlJuego.camara.getCenterX() - 390, ControlJuego.camara.getCenterY()- 200);
+                this.setPosition(ControlJuego.camara.getCenterX() - 390, ControlJuego.camara.getCenterY()- 300);
             }
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
@@ -112,7 +112,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
                 //Mantiene el boton dentro de la camara
-                this.setPosition(ControlJuego.camara.getCenterX()-500,ControlJuego.camara.getCenterY()-200);
+                this.setPosition(ControlJuego.camara.getCenterX()-500,ControlJuego.camara.getCenterY()-300);
             }
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
@@ -141,7 +141,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
                 //Mantiene el boton dentro de la camara
-                this.setPosition(ControlJuego.camara.getCenterX()+500,ControlJuego.camara.getCenterY()-200);
+                this.setPosition(ControlJuego.camara.getCenterX()+500,ControlJuego.camara.getCenterY()-300);
             }
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
@@ -163,6 +163,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                         tiempos[i] = 0;
                     }
                     */
+
                     registerTouchArea(bCamina);
                     registerTouchArea(bRetrocede);
 
@@ -170,7 +171,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
                         @Override
                         protected void onModifierFinished(IEntity pItem) {
-                            personaje.setPosition(px,personaje.getY());
+                            personaje.setPosition(personaje.getX(),personaje.getY());
+
                         /*
                         //Aqui cambian la animacion del personaje cuando cae
                         long tiempos[] = new long[8];
