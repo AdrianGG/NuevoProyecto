@@ -9,6 +9,7 @@ import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.atlas.bitmap.BuildableBitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSource;
 import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtlasBuilder;
 import org.andengine.opengl.texture.atlas.buildable.builder.ITextureAtlasBuilder;
@@ -45,16 +46,15 @@ public abstract class EscenaBase extends Scene {
 
         ITextureRegion region = null;
         try {
-            ITexture textura = new AssetBitmapTexture(
-                    actividadJuego.getTextureManager(), actividadJuego.getAssets(),archivo);
+            ITexture textura = new AssetBitmapTexture(actividadJuego.getTextureManager(), actividadJuego.getAssets(),archivo);
             textura.load();
-            region = TextureRegionFactory.
-                    extractFromTexture(textura);
+            region = TextureRegionFactory.extractFromTexture(textura);
         } catch (IOException e) {
             Log.i("cargarImagen()", "No se puede cargar: " + archivo);
         }
         return region;
     }
+
 
     // Método auxiliar para crear un Sprite.
     protected Sprite cargarSprite(float px, float py, final ITextureRegion regionFondo) {

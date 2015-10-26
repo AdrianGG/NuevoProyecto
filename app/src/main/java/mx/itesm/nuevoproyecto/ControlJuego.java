@@ -35,7 +35,9 @@ public class ControlJuego extends SimpleBaseGameActivity {
     public EngineOptions onCreateEngineOptions() {
         camara = new Camera(0,0,ANCHO_CAMARA,ALTO_CAMARA);
         EngineOptions OpcionesEngine = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new FillResolutionPolicy(), camara);
+        //Activa el multitouch en todas las escenas
         OpcionesEngine.getTouchOptions().setNeedsMultiTouch(true);
+        //-----------------------------------------
         return OpcionesEngine;
 
 
