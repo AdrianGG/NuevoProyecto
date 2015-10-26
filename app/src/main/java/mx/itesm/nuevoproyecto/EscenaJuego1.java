@@ -34,7 +34,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private Sprite obstaculo;
     private Sprite piso;
     private Sprite meta;
-    private Sprite plataforma;
+    private Sprite plataforma1;
     private Sprite plataforma2;
     private Sprite plataforma3;
     //variables para el control
@@ -59,7 +59,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         regionBCamina= cargarImagen("boton2.png");
         regionBRetrocede= cargarImagen("boton3.png");
         regionBSalta= cargarImagen("boton1.png");
-        regionMeta=cargarImagen("bprueba2.png");
+        regionMeta=cargarImagen("meta1.png");
         regionPlataforma= cargarImagen("base2.png");
         regionPlataforma2=cargarImagen("base3.png");
         regionPlataforma3= cargarImagen("base4.png");
@@ -142,7 +142,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             };
         };
         attachChild(obstaculo);
-        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA+600, ControlJuego.ALTO_CAMARA-250,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
+        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA+600, ControlJuego.ALTO_CAMARA-250,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
@@ -157,8 +157,90 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
             };
         };;
+        attachChild(plataforma1);
+        plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+1500, ControlJuego.ALTO_CAMARA-250,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
+                    //   personaje.unregisterEntityModifier(paralelo);
+                }
+                else{
+                    if(personaje.collidesWith(this)){
+                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight())+30);
+                    }
+                }
+
+            };
+        };;
+        attachChild(plataforma2);
+        plataforma3 = new Sprite(ControlJuego.ANCHO_CAMARA+2000, ControlJuego.ALTO_CAMARA-250,	regionPlataforma3,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
+                    //   personaje.unregisterEntityModifier(paralelo);
+                }
+                else{
+                    if(personaje.collidesWith(this)){
+                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight())-30);
+                    }
+                }
+
+            };
+        };;
+        attachChild(plataforma3);
+        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA+2600, ControlJuego.ALTO_CAMARA-205,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
+                    //   personaje.unregisterEntityModifier(paralelo);
+                }
+                else{
+                    if(personaje.collidesWith(this)){
+                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
+                    }
+                }
+
+            };
+        };;
+        attachChild(plataforma1);
+
+        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA+3500, ControlJuego.ALTO_CAMARA-125,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+
+                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
+                    //    personaje.unregisterEntityModifier(paralelo);
+                }
+                else{
+                    if(personaje.collidesWith(this)){
+                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
+                    }
+                }
+            };
+        };
         attachChild(obstaculo);
-        meta= new Sprite(ControlJuego.ANCHO_CAMARA+600,ControlJuego.ALTO_CAMARA-450,regionMeta,actividadJuego.getVertexBufferObjectManager());
+        plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+4120, ControlJuego.ALTO_CAMARA-250,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
+                    //   personaje.unregisterEntityModifier(paralelo);
+                }
+                else{
+                    if(personaje.collidesWith(this)){
+                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight())+30);
+                    }
+                }
+
+            };
+        };;
+        attachChild(plataforma2);
+
+        meta= new Sprite(ControlJuego.ANCHO_CAMARA+4700,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
 
         //-------------------------------------------------
