@@ -42,6 +42,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public float py = 0;
     private float avanza = 0;
     ParallelEntityModifier paralelo;
+    public boolean falls = true;
     //Instanciar botones para que sean accesibles en cualquier parte de esta clase
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
@@ -87,8 +88,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             {
                 if (personaje.collidesWith(this))
                 {
-                    //personaje.unregisterEntityModifier(paralelo);
-                    personaje.setPosition(personaje.getX(), piso.getY() + (piso.getHeight() + 75));
+
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 75));
 
                 }
             };
@@ -101,7 +102,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             {
                 if (personaje.collidesWith(this))
                 {
-                    //personaje.unregisterEntityModifier(paralelo);
+
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 75));
 
                 }
@@ -115,8 +116,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             {
                 if (personaje.collidesWith(this))
                 {
-                    //personaje.unregisterEntityModifier(paralelo);
-                    personaje.setPosition(personaje.getX(), piso.getY() + (piso.getHeight() + 75));
+
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 75));
 
                 }
             };
@@ -130,15 +131,10 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
+                if (personaje.collidesWith(this)){
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
+                }
 
-                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                    //    personaje.unregisterEntityModifier(paralelo);
-                }
-                else{
-                    if(personaje.collidesWith(this)){
-                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
-                    }
-                }
             };
         };
         attachChild(obstaculo);
@@ -146,13 +142,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                    //   personaje.unregisterEntityModifier(paralelo);
-                }
-                else{
-                    if(personaje.collidesWith(this)){
-                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
-                    }
+                if (personaje.collidesWith(this)){
+                    personaje.setPosition(personaje.getX(),this.getY() + (this.getHeight()));
                 }
 
             };
@@ -162,13 +153,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                    //   personaje.unregisterEntityModifier(paralelo);
-                }
-                else{
-                    if(personaje.collidesWith(this)){
-                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight())+30);
-                    }
+                if (personaje.collidesWith(this)){
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
                 }
 
             };
@@ -178,13 +164,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                    //   personaje.unregisterEntityModifier(paralelo);
-                }
-                else{
-                    if(personaje.collidesWith(this)){
-                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight())-30);
-                    }
+                if (personaje.collidesWith(this)){
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() -30));
                 }
 
             };
@@ -194,13 +175,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                    //   personaje.unregisterEntityModifier(paralelo);
-                }
-                else{
-                    if(personaje.collidesWith(this)){
-                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
-                    }
+                if (personaje.collidesWith(this)){
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
                 }
 
             };
@@ -212,13 +188,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             protected void onManagedUpdate(float pSecondsElapsed)
             {
 
-                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                    //    personaje.unregisterEntityModifier(paralelo);
-                }
-                else{
-                    if(personaje.collidesWith(this)){
-                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
-                    }
+                if (personaje.collidesWith(this)){
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
                 }
             };
         };
@@ -227,13 +198,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                    //   personaje.unregisterEntityModifier(paralelo);
-                }
-                else{
-                    if(personaje.collidesWith(this)){
-                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight())+30);
-                    }
+                if (personaje.collidesWith(this)){
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()+30));
                 }
 
             };
