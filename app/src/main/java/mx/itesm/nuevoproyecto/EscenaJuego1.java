@@ -184,24 +184,21 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
                         @Override
                         protected void onModifierFinished(IEntity pItem) {
-                            long tiempos[] = new long[50];
-                            for(int i=20; i<24; i++) {
-                                tiempos[i] = 100;
+                            if(bRetrocede.isPressed()||bCamina.isPressed()){
+                                long tiempos[] = new long[50];
+                                for(int i=10; i<15; i++) {
+                                    tiempos[i] = 100;
+                                }
+                                personaje.animate(tiempos,0,tiempos.length-1,true);
                             }
-                            personaje.animate(tiempos, 0, tiempos.length - 1, true);
+                            else{
+                                long tiempos[] = new long[50];
+                                for (int i = 20; i < 24; i++) {
+                                    tiempos[i] = 100;
+                                }
+                                personaje.animate(tiempos, 0, tiempos.length - 1, true);
+                            }
                             //personaje.setPosition(personaje.getX(),personaje.getY());
-
-                        /*
-                        //Aqui cambian la animacion del personaje cuando cae
-                        long tiempos[] = new long[8];
-                        for(int i=0; i<tiempos.length; i++) {
-                            tiempos[i] = 48;
-
-                        }
-
-                        personaje.animate(tiempos,0,tiempos.length-1,true);
-                        */
-
                             super.onModifierFinished(pItem);
                             personajeSaltando = false;
                         }
