@@ -142,7 +142,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             };
         };
         attachChild(obstaculo);
-        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA-1000, ControlJuego.ALTO_CAMARA-250,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
+        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA+600, ControlJuego.ALTO_CAMARA-250,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
