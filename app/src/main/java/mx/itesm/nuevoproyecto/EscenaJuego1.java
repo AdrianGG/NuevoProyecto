@@ -95,7 +95,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 {
                     //El personaje mira hacia la derecha cuando se mueve a esa direccion
                     long tiempos[] = new long[50];
-                    for(int i=2; i<9; i++) {
+                    for(int i=10; i<15; i++) {
                         tiempos[i] = 100;
                     }
                     personaje.animate(tiempos,0,tiempos.length-1,true);
@@ -127,7 +127,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 if (event.isActionDown())
                 {
                     long tiempos[] = new long[50];
-                    for(int i=2; i<9; i++) {
+                    for(int i=10; i<15; i++) {
                         tiempos[i] = 100;
                     }
                     personaje.animate(tiempos,0,tiempos.length-1,true);
