@@ -107,13 +107,14 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)&&!personajeSaltando)
-                {
-                    personaje.unregisterEntityModifier(paralelo);
-                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
-                }
-                else {
 
+                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
+                    personaje.unregisterEntityModifier(paralelo);
+                }
+                else{
+                    if(personaje.collidesWith(this)){
+                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
+                    }
                 }
             };
         };
@@ -122,12 +123,15 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)&&!personajeSaltando)
-                {
+                if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
                     personaje.unregisterEntityModifier(paralelo);
-                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
+                }
+                else{
+                    if(personaje.collidesWith(this)){
+                        personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
+                    }
+                }
 
-                }else{}
             };
         };;
         attachChild(obstaculo);
