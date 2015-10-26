@@ -8,7 +8,7 @@ import org.andengine.opengl.texture.region.ITextureRegion;
  */
 public class EscenaJuego extends EscenaBase {
    
-   private ITextureRegion[] regionSlides;
+    private ITextureRegion[] regionSlides;
     private ITextureRegion regionSlideActual;
     private Sprite spriteFondo;
 
@@ -20,7 +20,7 @@ public class EscenaJuego extends EscenaBase {
     public void cargarRecursos() {
 
       //  regionFondo = cargarImagen("escenasiguiente.jpg");
-        regionSlides = new ITextureRegion[16];
+        regionSlides = new ITextureRegion[6];
         regionSlides[0] = cargarImagen("juego1.jpg");
         regionSlides[1] = cargarImagen("juego2.jpg");
         regionSlides[2] = cargarImagen("juego3.jpg");
@@ -36,8 +36,6 @@ public class EscenaJuego extends EscenaBase {
     @Override
     public void crearEscena() {
 
-      //  spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionFondo);
-       // attachChild(spriteFondo);
         spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
         attachChild(spriteFondo);
         setOnSceneTouchListener(this.getOnSceneTouchListener());
