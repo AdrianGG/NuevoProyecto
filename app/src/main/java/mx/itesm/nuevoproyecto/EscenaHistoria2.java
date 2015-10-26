@@ -7,7 +7,7 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 /**
  * Created by A. iram on 26/10/2015.
  */
-public class Historia2 extends EscenaBase {
+public class EscenaHistoria2 extends EscenaBase {
     private ITextureRegion[] regionSlides;
     private ITextureRegion regionSlideActual;
     private Sprite spriteFondo;
@@ -53,12 +53,13 @@ public class Historia2 extends EscenaBase {
     public void onBackKeyPressed() {
         admEscenas.crearEscenaMenu();
         admEscenas.setEscena(TipoEscena.ESCENA_MENU);
-        admEscenas.liberarEscenaJuego();
+        admEscenas.liberarEscenaHistoria2();
+
     }
 
     @Override
     public TipoEscena getTipoEscena() {
-        return null;
+        return TipoEscena.ESCENA_HISTORIA2;
     }
 
     @Override

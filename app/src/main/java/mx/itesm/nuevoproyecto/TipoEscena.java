@@ -12,5 +12,6 @@ package mx.itesm.nuevoproyecto;
         ESCENA_JUEGO_DOS,
         ESCENA_FISICA,
         ESCENA_INSTRUCCIONES,
-        ESCENA_JUEGO1
+        ESCENA_JUEGO1,
+        ESCENA_HISTORIA2
  }
