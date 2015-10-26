@@ -35,7 +35,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private float px = 0;
     public float py = 0;
     private float avanza = 0;
-    JumpModifier salto;
+    ParallelEntityModifier paralelo;
     //Instanciar botones para que sean accesibles en cualquier parte de esta clase
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
@@ -71,17 +71,65 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         }
         personaje.animate(tiempos, 0, tiempos.length - 1, true);
         attachChild(personaje);
-        // Aqui iran todas las plataformas NOTA: todas se llaman obstaculo
-        piso = new Sprite(personaje.getX(),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager());
+        // Aqui iran todas las plataformas NOTA: todas se llaman obstaculo o plataforma
+        piso = new Sprite(personaje.getX(),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (personaje.collidesWith(this))
+                {
+                    //personaje.unregisterEntityModifier(paralelo);
+                    personaje.setPosition(personaje.getX(), piso.getY() + (piso.getHeight() + 75));
+
+                }
+            };
+        };
+        ;
         attachChild(piso);
-        piso = new Sprite(piso.getX()+(piso.getWidth()/2),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager());
+        piso = new Sprite(piso.getX()+(piso.getWidth()/2),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (personaje.collidesWith(this))
+                {
+                    //personaje.unregisterEntityModifier(paralelo);
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 75));
+
+                }
+            };
+        };
+        ;
         attachChild(piso);
         //piso = new Sprite(piso.getX()+2*(piso.getWidth()/2),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager());
         //attachChild(piso);
         setBackgroundEnabled(true);
-        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-450,	regionObstaculo,actividadJuego.getVertexBufferObjectManager());
+        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-450,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (personaje.collidesWith(this)&&!personajeSaltando)
+                {
+                    personaje.unregisterEntityModifier(paralelo);
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
+                }
+                else {
+
+                }
+            };
+        };
         attachChild(obstaculo);
-        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA-1000, ControlJuego.ALTO_CAMARA-250,	regionObstaculo,actividadJuego.getVertexBufferObjectManager());
+        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA-1000, ControlJuego.ALTO_CAMARA-250,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (personaje.collidesWith(this)&&!personajeSaltando)
+                {
+                    personaje.unregisterEntityModifier(paralelo);
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
+
+                }else{}
+            };
+        };;
         attachChild(obstaculo);
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+600,ControlJuego.ALTO_CAMARA-450,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
@@ -170,7 +218,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                     float xn = xa;
                     float yn = ya;
                     //El parámetro avanza*50 sirve para "conservar" el momentum en el salto
-                    salto = new JumpModifier(1, xa,xn+(avanza*50), ya, yn, -400);
+                    JumpModifier salto = new JumpModifier(1, xa,xn+(avanza*50), ya, yn, -400);
                     personajeSaltando = true;
                     long tiempos[] = new long[50];
                     for (int i = 40; i < 42; i++) {
@@ -181,7 +229,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                     //registerTouchArea(bCamina);
                     //registerTouchArea(bRetrocede);
 
-                    ParallelEntityModifier paralelo = new ParallelEntityModifier(salto) {
+                    paralelo = new ParallelEntityModifier(salto) {
 
                         @Override
                         protected void onModifierFinished(IEntity pItem) {
@@ -205,9 +253,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                         }
                     };
                     personaje.registerEntityModifier(paralelo);
-                } else {
-
                 }
+
                 return super.onAreaTouched(event, x, y);
 
             }
@@ -235,18 +282,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         bRetrocede.setPosition(personaje.getX()-500,personaje.getY()-300);
         bSalta.setPosition(personaje.getX() + 500, personaje.getY()-300);
         //-------------------------------------------------------------------------------------------------
-        if(personaje.collidesWith(piso)){
-            //personaje.setPosition(personaje.getX(),piso.getY()+(piso.getHeight()));
-            personaje.unregisterEntityModifier(salto);
-        }else{
-            if(personaje.collidesWith(obstaculo)){
-                //personaje.setPosition(personaje.getX(),piso.getY()+obstaculo.getHeight());
-                personaje.unregisterEntityModifier(salto);
-            }else{
-
-                personaje.setPosition(personaje.getX(),py);
-            }
-        }
+        //Gravedad artificial
+        personaje.setPosition(personaje.getX(),py);
+        //----------------------------------
         if (personaje.collidesWith(meta)){
             //System.out.println("##################################################################################");
             admEscenas.crearEscenaHistoria2();
