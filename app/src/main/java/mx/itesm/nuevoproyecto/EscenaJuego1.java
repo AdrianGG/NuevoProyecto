@@ -170,13 +170,11 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                     //El parámetro avanza*50 sirve para "conservar" el momentum en el salto
                     JumpModifier salto = new JumpModifier(1, xa,xn+(avanza*50), ya, yn, -300);
                     personajeSaltando = true;
-                    /*
-                    //Maneja la animacion durante el salto
-                    long tiempos[] = new long[2];
-                    for (int i = 0; i < tiempos.length; i++) {
-                        tiempos[i] = 0;
+                    long tiempos[] = new long[50];
+                    for (int i = 40; i < 42; i++) {
+                        tiempos[i] = 200;
                     }
-                    */
+                    personaje.animate(tiempos, 0, tiempos.length - 1, false);
 
                     //registerTouchArea(bCamina);
                     //registerTouchArea(bRetrocede);
@@ -185,8 +183,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
                         @Override
                         protected void onModifierFinished(IEntity pItem) {
-
-                                personaje.setPosition(personaje.getX(),personaje.getY());
+                            long tiempos[] = new long[50];
+                            for(int i=20; i<24; i++) {
+                                tiempos[i] = 100;
+                            }
+                            personaje.animate(tiempos, 0, tiempos.length - 1, true);
+                            //personaje.setPosition(personaje.getX(),personaje.getY());
 
                         /*
                         //Aqui cambian la animacion del personaje cuando cae
@@ -240,6 +242,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             if(personaje.collidesWith(obstaculo)){
                 personaje.setPosition(personaje.getX(),piso.getY()+obstaculo.getHeight());
             }else{
+
                 personaje.setPosition(personaje.getX(),py);
             }
         }
