@@ -39,6 +39,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private float px = 0;
     public float py = 0;
     private float avanza = 0;
+    JumpModifier salto;
     //Instanciar botones para que sean accesibles en cualquier parte de esta clase
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
@@ -168,7 +169,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                     float xn = xa;
                     float yn = ya;
                     //El parámetro avanza*50 sirve para "conservar" el momentum en el salto
-                    JumpModifier salto = new JumpModifier(1, xa,xn+(avanza*50), ya, yn, -300);
+                    salto = new JumpModifier(1, xa,xn+(avanza*50), ya, yn, -400);
                     personajeSaltando = true;
                     long tiempos[] = new long[50];
                     for (int i = 40; i < 42; i++) {
@@ -237,10 +238,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         bSalta.setPosition(personaje.getX() + 500, personaje.getY()-300);
         //-------------------------------------------------------------------------------------------------
         if(personaje.collidesWith(piso)){
-            personaje.setPosition(personaje.getX(),piso.getY()+(piso.getHeight()));
+            //personaje.setPosition(personaje.getX(),piso.getY()+(piso.getHeight()));
+            personaje.unregisterEntityModifier(salto);
         }else{
             if(personaje.collidesWith(obstaculo)){
-                personaje.setPosition(personaje.getX(),piso.getY()+obstaculo.getHeight());
+                //personaje.setPosition(personaje.getX(),piso.getY()+obstaculo.getHeight());
+                personaje.unregisterEntityModifier(salto);
             }else{
 
                 personaje.setPosition(personaje.getX(),py);
