@@ -26,11 +26,17 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionObstaculo;
     private ITextureRegion regionPiso;
     private ITextureRegion regionMeta;
+    private ITextureRegion regionPlataforma;
+    private ITextureRegion regionPlataforma2;
+    private ITextureRegion regionPlataforma3;
     private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
     private Sprite obstaculo;
     private Sprite piso;
     private Sprite meta;
+    private Sprite plataforma;
+    private Sprite plataforma2;
+    private Sprite plataforma3;
     //variables para el control
     private float px = 0;
     public float py = 0;
@@ -54,6 +60,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         regionBRetrocede= cargarImagen("boton3.png");
         regionBSalta= cargarImagen("boton1.png");
         regionMeta=cargarImagen("bprueba2.png");
+        regionPlataforma= cargarImagen("base2.png");
+        regionPlataforma2=cargarImagen("base3.png");
+        regionPlataforma3= cargarImagen("base4.png");
 
 
     }
@@ -94,6 +103,20 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 {
                     //personaje.unregisterEntityModifier(paralelo);
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 75));
+
+                }
+            };
+        };
+        ;
+        attachChild(piso);
+        piso = new Sprite(personaje.getX()+(piso.getWidth()),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (personaje.collidesWith(this))
+                {
+                    //personaje.unregisterEntityModifier(paralelo);
+                    personaje.setPosition(personaje.getX(), piso.getY() + (piso.getHeight() + 75));
 
                 }
             };
