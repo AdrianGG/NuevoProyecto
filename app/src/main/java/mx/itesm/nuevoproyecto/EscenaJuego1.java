@@ -63,7 +63,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public void crearEscena() {
 
         personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
-       // personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
+        // personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
         // Animacion Idle del personaje
         long tiempos[] = new long[50];
         for(int i=20; i<24; i++) {
@@ -109,7 +109,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             {
 
                 if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                //    personaje.unregisterEntityModifier(paralelo);
+                    //    personaje.unregisterEntityModifier(paralelo);
                 }
                 else{
                     if(personaje.collidesWith(this)){
@@ -124,7 +124,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             protected void onManagedUpdate(float pSecondsElapsed)
             {
                 if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                 //   personaje.unregisterEntityModifier(paralelo);
+                    //   personaje.unregisterEntityModifier(paralelo);
                 }
                 else{
                     if(personaje.collidesWith(this)){
@@ -296,7 +296,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             admEscenas.liberarEscenaJuego1();
         }
     }
-    
+
 
     @Override
     public void onBackKeyPressed() {
