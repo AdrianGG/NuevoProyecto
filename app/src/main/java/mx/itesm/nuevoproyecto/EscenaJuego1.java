@@ -2,23 +2,17 @@ package mx.itesm.nuevoproyecto;
 
 import android.view.MotionEvent;
 
-import org.andengine.engine.camera.Camera;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.JumpModifier;
 import org.andengine.entity.modifier.ParallelEntityModifier;
 import org.andengine.entity.scene.IOnAreaTouchListener;
 import org.andengine.entity.scene.ITouchArea;
-import org.andengine.entity.scene.background.AutoParallaxBackground;
-import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
-import org.andengine.opengl.util.GLState;
-
-import java.util.ResourceBundle;
 
 /**
  * Created by A. iram on 02/10/2015.
@@ -31,10 +25,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionBSalta;
     private ITextureRegion regionObstaculo;
     private ITextureRegion regionPiso;
+    private ITextureRegion regionMeta;
     private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
     private Sprite obstaculo;
     private Sprite piso;
+    private Sprite meta;
     //variables para el control
     private float px = 0;
     public float py = 0;
@@ -57,6 +53,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         regionBCamina= cargarImagen("boton2.png");
         regionBRetrocede= cargarImagen("boton3.png");
         regionBSalta= cargarImagen("boton1.png");
+        regionMeta=cargarImagen("bprueba2.png");
 
 
     }
@@ -86,6 +83,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         attachChild(obstaculo);
         obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA-1000, ControlJuego.ALTO_CAMARA-250,	regionObstaculo,actividadJuego.getVertexBufferObjectManager());
         attachChild(obstaculo);
+        meta= new Sprite(ControlJuego.ANCHO_CAMARA+600,ControlJuego.ALTO_CAMARA-450,regionMeta,actividadJuego.getVertexBufferObjectManager());
+        attachChild(meta);
+
         //-------------------------------------------------
         bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
 
@@ -99,6 +99,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                     for(int i=10; i<15; i++) {
                         tiempos[i] = 100;
                     }
+
                     personaje.animate(tiempos,0,tiempos.length-1,true);
                     personaje.setScale(Math.abs(personaje.getScaleX()),personaje.getScaleY());
                     avanza = 10f;
@@ -245,6 +246,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
                 personaje.setPosition(personaje.getX(),py);
             }
+        }
+        if (personaje.collidesWith(meta)){
+            //System.out.println("##################################################################################");
+            admEscenas.crearEscenaHistoria2();
+            admEscenas.setEscena(TipoEscena.ESCENA_HISTORIA2);
+            admEscenas.liberarEscenaJuego1();
         }
     }
     
