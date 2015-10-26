@@ -109,7 +109,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             {
 
                 if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                    personaje.unregisterEntityModifier(paralelo);
+                //    personaje.unregisterEntityModifier(paralelo);
                 }
                 else{
                     if(personaje.collidesWith(this)){
@@ -124,7 +124,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             protected void onManagedUpdate(float pSecondsElapsed)
             {
                 if (personaje.collidesWith(this)&&personaje.getEntityModifierCount()>0){
-                    personaje.unregisterEntityModifier(paralelo);
+                 //   personaje.unregisterEntityModifier(paralelo);
                 }
                 else{
                     if(personaje.collidesWith(this)){
