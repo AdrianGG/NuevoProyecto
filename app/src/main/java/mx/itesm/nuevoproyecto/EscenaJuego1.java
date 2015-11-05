@@ -127,6 +127,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         attachChild(piso);
         //piso = new Sprite(piso.getX()+2*(piso.getWidth()/2),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager());
         //attachChild(piso);
+        if (personaje.getY()<(800/3)-200){
+            System.out.println("loooooooooooooooooooooooool");//
+        }
         setBackgroundEnabled(true);
         obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-450,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
             @Override
@@ -360,7 +363,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //Gravedad artificial
         personaje.setPosition(personaje.getX(),py);
         //----------------------------------
-        // distancia de personaje-meta para detectar el paso de nivel//
+        // distancia de personaje-meta para detectar el paso de nivel/
         double d;
         float xp = personaje.getX();
         float xm= meta.getX();
