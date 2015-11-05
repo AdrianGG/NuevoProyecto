@@ -360,6 +360,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //Gravedad artificial
         personaje.setPosition(personaje.getX(),py);
         //----------------------------------
+        // distancia de personaje-meta para detectar el paso de nivel
         double d;
         float xp = personaje.getX();
         float xm= meta.getX();
