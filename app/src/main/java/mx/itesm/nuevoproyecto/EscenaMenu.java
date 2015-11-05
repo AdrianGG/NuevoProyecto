@@ -129,6 +129,7 @@ public class EscenaMenu extends EscenaBase {
                         // Mostrar la escena de AcercaDe
                         admEscenas.crearEscenaAcercaDe();
                         admEscenas.setEscena(TipoEscena.ESCENA_ACERCA_DE);
+                        actividadJuego.getEngine().vibrate(200);
                         admEscenas.liberarEscenaMenu();
                         break;
 
@@ -136,6 +137,7 @@ public class EscenaMenu extends EscenaBase {
                         // Mostrar la pantalla de juego, lleva a la animacion
                         admEscenas.crearEscenaJuego();
                         admEscenas.setEscena(TipoEscena.ESCENA_JUEGO);
+                        actividadJuego.getEngine().vibrate(200);
                         admEscenas.liberarEscenaMenu();
 
                         break;
@@ -143,6 +145,7 @@ public class EscenaMenu extends EscenaBase {
                     case OPCION_INSTRUCCIONES:
                         admEscenas.crearEscenaInstrucciones();
                         admEscenas.setEscena(TipoEscena.ESCENA_INSTRUCCIONES);
+                        actividadJuego.getEngine().vibrate(200);
                         admEscenas.liberarEscenaMenu();
                         break;
 
