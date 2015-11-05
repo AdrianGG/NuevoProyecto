@@ -71,7 +71,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
     @Override
     public void crearEscena() {
-
+        meta= new Sprite(ControlJuego.ANCHO_CAMARA+4700,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
+        attachChild(meta);
         personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
         // personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
         // Animacion Idle del personaje
@@ -206,8 +207,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         };;
         attachChild(plataforma2);
 
-        meta= new Sprite(ControlJuego.ANCHO_CAMARA+4700,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
-        attachChild(meta);
+
 
         //-------------------------------------------------
         bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
@@ -360,8 +360,14 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //Gravedad artificial
         personaje.setPosition(personaje.getX(),py);
         //----------------------------------
-        if (personaje.collidesWith(meta)){
-            //System.out.println("##################################################################################");
+        double d;
+        float xp = personaje.getX();
+        float xm= meta.getX();
+        float yp= personaje.getY();
+        float ym= meta.getY();
+        d= Math.sqrt((xp - xm) * (xp - xm) + (yp - ym) * (yp - ym));
+        if (d<120){
+            actividadJuego.getEngine().vibrate(100);
             admEscenas.crearEscenaHistoria2();
             admEscenas.setEscena(TipoEscena.ESCENA_HISTORIA2);
             admEscenas.liberarEscenaJuego1();
