@@ -81,7 +81,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             tiempos[i] = 100;
         }
         personaje.animate(tiempos, 0, tiempos.length - 1, true);
-        attachChild(personaje);
+        attachChild(personaje);//
         // Aqui iran todas las plataformas NOTA: todas se llaman obstaculo o plataforma
         piso = new Sprite(personaje.getX(),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager()){
             @Override
