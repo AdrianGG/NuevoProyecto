@@ -29,16 +29,16 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionPlataforma;
     private ITextureRegion regionPlataforma2;
     private ITextureRegion regionPlataforma3;
-    private ITextureRegion regionPared;
+    private ITextureRegion regionFondo;
     private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
     private Sprite obstaculo;
     private Sprite piso;
-    private  Sprite pared;
     private Sprite meta;
     private Sprite plataforma1;
     private Sprite plataforma2;
     private Sprite plataforma3;
+    private Sprite fondo;
     //variables para el control
     private float px = 0;
     public float py = 0;
@@ -49,7 +49,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
     public ButtonSprite bSalta;
-    boolean muere;
+
 
 
 
@@ -57,6 +57,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
     @Override
     public void cargarRecursos() {
+        regionFondo= cargarImagen("glitchfondo3.png");
         regionObstaculo= cargarImagen("obstaculo.png");
         regionPiso = cargarImagen("pisoRosa.png");
         regionPersonaje = cargarImagenMosaico("mildoros.png", 2290, 1091, 5, 10);
@@ -67,7 +68,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         regionPlataforma= cargarImagen("base2.png");
         regionPlataforma2=cargarImagen("base3.png");
         regionPlataforma3= cargarImagen("base4.png");
-        regionPared = cargarImagen("letreroCaida.png");
+
 
 
     }
@@ -75,6 +76,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
     @Override
     public void crearEscena() {
+        fondo=new Sprite(ControlJuego.ANCHO_CAMARA/2,(ControlJuego.ALTO_CAMARA/3)+250,regionFondo,actividadJuego.getVertexBufferObjectManager());
+        attachChild(fondo);
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+4700,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
         personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager()){
