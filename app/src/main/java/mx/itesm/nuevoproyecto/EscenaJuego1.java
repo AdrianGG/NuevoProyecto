@@ -29,10 +29,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionPlataforma;
     private ITextureRegion regionPlataforma2;
     private ITextureRegion regionPlataforma3;
+    private ITextureRegion regionPared;
     private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
     private Sprite obstaculo;
     private Sprite piso;
+    private  Sprite pared;
     private Sprite meta;
     private Sprite plataforma1;
     private Sprite plataforma2;
@@ -47,6 +49,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
     public ButtonSprite bSalta;
+    boolean muere;
 
 
 
@@ -64,6 +67,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         regionPlataforma= cargarImagen("base2.png");
         regionPlataforma2=cargarImagen("base3.png");
         regionPlataforma3= cargarImagen("base4.png");
+        regionPared = cargarImagen("letreroCaida.png");
 
 
     }
@@ -73,7 +77,19 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public void crearEscena() {
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+4700,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
-        personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
+        personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed){
+                if(this.getY() < ControlJuego.ALTO_CAMARA/3 -800){
+                    //System.out.println("MORIÍ");
+                    personaje.setPosition(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3);
+
+
+                }
+                super.onManagedUpdate(pSecondsElapsed);
+            }
+
+        };
         // personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
         // Animacion Idle del personaje
         long tiempos[] = new long[50];
@@ -82,6 +98,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         }
         personaje.animate(tiempos, 0, tiempos.length - 1, true);
         attachChild(personaje);//
+
         // Aqui iran todas las plataformas NOTA: todas se llaman obstaculo o plataforma
         piso = new Sprite(personaje.getX(),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager()){
             @Override
@@ -97,6 +114,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         };
         ;
         attachChild(piso);
+
         piso = new Sprite(piso.getX()+(piso.getWidth()/2),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
@@ -125,6 +143,21 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         };
         ;
         attachChild(piso);
+        piso = new Sprite(personaje.getX()+(piso.getWidth()+800),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (personaje.collidesWith(this))
+                {
+
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 75));
+
+                }
+            };
+        };
+        ;
+        attachChild(piso);
+
         //piso = new Sprite(piso.getX()+2*(piso.getWidth()/2),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager());
         //attachChild(piso);
         setBackgroundEnabled(true);
