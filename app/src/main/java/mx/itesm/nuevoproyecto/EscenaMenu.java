@@ -114,9 +114,9 @@ public class EscenaMenu extends EscenaBase {
         menu.setBackgroundEnabled(false);   // Completamente transparente
 
         // Ubicar las opciones DENTRO del menú. El centro del menú es (0,0)
-        opcionAcercaDe.setPosition(-0, -220);
+        opcionAcercaDe.setPosition(-0, -240);
         opcionJugar.setPosition(0, 27);
-        opcionInstrucciones.setPosition(0,-87);
+        opcionInstrucciones.setPosition(0,-107);
 
         // Registra el Listener para atender las opciones
         menu.setOnMenuItemClickListener(new MenuScene.IOnMenuItemClickListener() {

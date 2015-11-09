@@ -39,12 +39,15 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private Sprite plataforma2;
     private Sprite plataforma3;
     private Sprite fondo;
+    private Sprite bPausa;
+    private Sprite fPausa;
     //variables para el control
     private float px = 0;
     public float py = 0;
     private float avanza = 0;
     ParallelEntityModifier paralelo;
     public boolean falls = true;
+    public boolean isPaused = false;
     //Instanciar botones para que sean accesibles en cualquier parte de esta clase
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
@@ -76,8 +79,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
     @Override
     public void crearEscena() {
-        fondo=new Sprite(ControlJuego.ANCHO_CAMARA/2,(ControlJuego.ALTO_CAMARA/3)+250,regionFondo,actividadJuego.getVertexBufferObjectManager());
-        attachChild(fondo);
+       // fondo=new Sprite(ControlJuego.ANCHO_CAMARA/2,(ControlJuego.ALTO_CAMARA/3)+250,regionFondo,actividadJuego.getVertexBufferObjectManager());
+      //  attachChild(fondo);
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+4700,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
         personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager()){

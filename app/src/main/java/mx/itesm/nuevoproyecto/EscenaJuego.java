@@ -1,4 +1,5 @@
 package mx.itesm.nuevoproyecto;
+import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.region.ITextureRegion;
@@ -10,7 +11,12 @@ public class EscenaJuego extends EscenaBase {
    
     private ITextureRegion[] regionSlides;
     private ITextureRegion regionSlideActual;
+    private ITextureRegion regionBSkip;
+    private ITextureRegion regionBSiguente;
     private Sprite spriteFondo;
+    private ButtonSprite bSkip;
+    private ButtonSprite bSiguente;
+
 
 
 
@@ -27,7 +33,8 @@ public class EscenaJuego extends EscenaBase {
         regionSlides[3] = cargarImagen("juego4.jpg");
         regionSlides[4] = cargarImagen("juego5.jpg");
         regionSlides[5] = cargarImagen("juego6.jpg");
-
+        regionBSkip= cargarImagen("bskip.png");
+        regionBSiguente= cargarImagen("bskip.png");
         regionSlideActual=regionSlides[0];
 
 
@@ -36,13 +43,66 @@ public class EscenaJuego extends EscenaBase {
     @Override
     public void crearEscena() {
 
-        spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
-        attachChild(spriteFondo);
-        setOnSceneTouchListener(this.getOnSceneTouchListener());
+       spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
+       attachChild(spriteFondo);
 
+        bSkip= new ButtonSprite(ControlJuego.ANCHO_CAMARA/4,ControlJuego.ALTO_CAMARA/2,regionBSkip,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            public boolean onAreaTouched(TouchEvent pTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                if(pTouchEvent.isActionDown()) {
+                    admEscenas.crearEscenaJuego1();
+                    admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);
+                    admEscenas.liberarEscenaJuego();
+                }
+                return true;
+            }
+        };
+        registerTouchArea(bSkip);
+        setTouchAreaBindingOnActionDownEnabled(true);
+        attachChild(bSkip);
+        bSiguente=  new ButtonSprite(ControlJuego.ANCHO_CAMARA-50,ControlJuego.ALTO_CAMARA/2,regionBSkip,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            public boolean onAreaTouched(TouchEvent pTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                if(pTouchEvent.isActionDown()) {
+                    if(contador<5){
+                        contador++;
+                        regionSlideActual=regionSlides[contador];
+                        EscenaJuego.this.detachChild(spriteFondo);
+                        EscenaJuego.this.detachChild(this);
+                        spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
+                        EscenaJuego.this.attachChild(spriteFondo);
+
+                        EscenaJuego.this.attachChild(this);
+//set z index
+                    }
+                    else{
+                        admEscenas.crearEscenaJuego1();
+                        admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);
+                        admEscenas.liberarEscenaJuego();
+                    }
+
+                }
+                return true;
+            }
+        };
+        registerTouchArea(bSiguente);
+        setTouchAreaBindingOnActionDownEnabled(true);
+        attachChild(bSiguente);
+       /* bSkip=new Sprite(ControlJuego.ANCHO_CAMARA- 150,ControlJuego.ALTO_CAMARA/2,regionBSkip,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float X, float Y){
+                // Cuando se toca el botón de pausa
+                if (pSceneTouchEvent.isActionUp()) {
+                    System.out.println("###############################################################");
+                }
+                return true;
+            }
+        };
+        attachChild(bSkip);*/
+       // setOnSceneTouchListener(this.getOnSceneTouchListener());
 
     }
-    public boolean onSceneTouchEvent(TouchEvent pSceneTouchEvent)
+  /*  public boolean onSceneTouchEvent(TouchEvent pSceneTouchEvent)
     {
         if (pSceneTouchEvent.isActionDown())
         {
@@ -60,7 +120,7 @@ public class EscenaJuego extends EscenaBase {
 
         }
         return false;
-    }
+    }*/
 
 
     @Override
