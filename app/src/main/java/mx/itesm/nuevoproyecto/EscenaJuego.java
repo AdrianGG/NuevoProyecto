@@ -73,7 +73,6 @@ public class EscenaJuego extends EscenaBase {
                         EscenaJuego.this.attachChild(spriteFondo);
 
                         EscenaJuego.this.attachChild(this);
-//set z index
                     }
                     else{
                         admEscenas.crearEscenaJuego1();
@@ -88,39 +87,8 @@ public class EscenaJuego extends EscenaBase {
         registerTouchArea(bSiguente);
         setTouchAreaBindingOnActionDownEnabled(true);
         attachChild(bSiguente);
-       /* bSkip=new Sprite(ControlJuego.ANCHO_CAMARA- 150,ControlJuego.ALTO_CAMARA/2,regionBSkip,actividadJuego.getVertexBufferObjectManager()){
-            @Override
-            public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float X, float Y){
-                // Cuando se toca el botón de pausa
-                if (pSceneTouchEvent.isActionUp()) {
-                    System.out.println("###############################################################");
-                }
-                return true;
-            }
-        };
-        attachChild(bSkip);*/
-       // setOnSceneTouchListener(this.getOnSceneTouchListener());
 
     }
-  /*  public boolean onSceneTouchEvent(TouchEvent pSceneTouchEvent)
-    {
-        if (pSceneTouchEvent.isActionDown())
-        {
-            if(contador<5){
-                contador++;
-                regionSlideActual=regionSlides[contador];
-                spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
-                attachChild(spriteFondo);
-            }
-            else{
-                admEscenas.crearEscenaJuego1();
-                admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);
-                admEscenas.liberarEscenaJuego();
-            }
-
-        }
-        return false;
-    }*/
 
 
     @Override
