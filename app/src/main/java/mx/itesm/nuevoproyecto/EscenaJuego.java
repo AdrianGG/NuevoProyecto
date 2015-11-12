@@ -8,7 +8,7 @@ import org.andengine.opengl.texture.region.ITextureRegion;
  * Created by A. iram on 01/10/2015.
  */
 public class EscenaJuego extends EscenaBase {
-   
+
     private ITextureRegion[] regionSlides;
     private ITextureRegion regionSlideActual;
     private ITextureRegion regionBSkip;
@@ -21,11 +21,11 @@ public class EscenaJuego extends EscenaBase {
 
 
 
-    
+
     @Override
     public void cargarRecursos() {
 
-      //  regionFondo = cargarImagen("escenasiguiente.jpg");
+        //  regionFondo = cargarImagen("escenasiguiente.jpg");
         regionSlides = new ITextureRegion[6];
         regionSlides[0] = cargarImagen("juego1.jpg");
         regionSlides[1] = cargarImagen("juego2.jpg");
@@ -43,8 +43,8 @@ public class EscenaJuego extends EscenaBase {
     @Override
     public void crearEscena() {
 
-       spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
-       attachChild(spriteFondo);
+        spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
+        attachChild(spriteFondo);
 
         bSkip= new ButtonSprite(ControlJuego.ANCHO_CAMARA/4,ControlJuego.ALTO_CAMARA/2,regionBSkip,actividadJuego.getVertexBufferObjectManager()){
             @Override
@@ -116,7 +116,7 @@ public class EscenaJuego extends EscenaBase {
         regionSlideActual = null;
         regionSlides=null;
     }
-   int  contador=0;
+    int  contador=0;
 
 
 }
