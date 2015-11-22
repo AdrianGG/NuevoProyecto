@@ -80,12 +80,11 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
     @Override
     public void crearEscena() {
-        fondo=new Sprite(ControlJuego.ANCHO_CAMARA/2,(ControlJuego.ALTO_CAMARA/3)+250,regionFondo,actividadJuego.getVertexBufferObjectManager());
-        attachChild(fondo);
-        fondo=new Sprite(ControlJuego.ANCHO_CAMARA/2+3158,(ControlJuego.ALTO_CAMARA/3)+250,regionFondo2,actividadJuego.getVertexBufferObjectManager());
-        attachChild(fondo);
-        fondo=new Sprite(ControlJuego.ANCHO_CAMARA/2+(3158*2),(ControlJuego.ALTO_CAMARA/3)+250,regionFondo3,actividadJuego.getVertexBufferObjectManager());
-        attachChild(fondo);
+        float xF = ControlJuego.ANCHO_CAMARA/2-3158;
+        for(int i = 0; i<=3; i++){
+            fondo=new Sprite(xF+(3158*i),(ControlJuego.ALTO_CAMARA/2+150),regionFondo,actividadJuego.getVertexBufferObjectManager());
+            attachChild(fondo);
+        }
 
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+4700,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
