@@ -33,8 +33,8 @@ public class EscenaJuego extends EscenaBase {
         regionSlides[3] = cargarImagen("juego4.jpg");
         regionSlides[4] = cargarImagen("juego5.jpg");
         regionSlides[5] = cargarImagen("juego6.jpg");
-        regionBSkip= cargarImagen("bskip.png");
-        regionBSiguente= cargarImagen("bskip.png");
+        regionBSkip= cargarImagen("botonazulmenu.png");
+        regionBSiguente= cargarImagen("botonrosamenu.png");
         regionSlideActual=regionSlides[0];
 
 
@@ -60,7 +60,7 @@ public class EscenaJuego extends EscenaBase {
         registerTouchArea(bSkip);
         setTouchAreaBindingOnActionDownEnabled(true);
         attachChild(bSkip);
-        bSiguente=  new ButtonSprite(ControlJuego.ANCHO_CAMARA-50,ControlJuego.ALTO_CAMARA/2,regionBSkip,actividadJuego.getVertexBufferObjectManager()){
+        bSiguente=  new ButtonSprite(ControlJuego.ANCHO_CAMARA-50,ControlJuego.ALTO_CAMARA/2,regionBSiguente,actividadJuego.getVertexBufferObjectManager()){
             @Override
             public boolean onAreaTouched(TouchEvent pTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
                 if(pTouchEvent.isActionDown()) {
