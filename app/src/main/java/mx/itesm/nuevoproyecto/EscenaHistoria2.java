@@ -1,5 +1,6 @@
 package mx.itesm.nuevoproyecto;
 
+import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.region.ITextureRegion;
@@ -12,6 +13,10 @@ public class EscenaHistoria2 extends EscenaBase {
     private ITextureRegion regionSlideActual;
     private Sprite spriteFondo;
     private int contador=0;
+    private ITextureRegion regionBSkip;
+    private ITextureRegion regionBSiguente;
+    private ButtonSprite bSkip;
+    private ButtonSprite bSiguente;
 
     @Override
     public void cargarRecursos() {
@@ -19,6 +24,8 @@ public class EscenaHistoria2 extends EscenaBase {
         regionSlides[0] = cargarImagen("juego7.jpg");
         regionSlides[1] = cargarImagen("juego8.jpg");
         regionSlideActual=regionSlides[0];
+        regionBSkip= cargarImagen("bskip.png");
+        regionBSiguente= cargarImagen("bskip.png");
 
     }
 
@@ -26,28 +33,51 @@ public class EscenaHistoria2 extends EscenaBase {
     public void crearEscena() {
         spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
         attachChild(spriteFondo);
-        setOnSceneTouchListener(this.getOnSceneTouchListener());
-    }
-    public boolean onSceneTouchEvent(TouchEvent pSceneTouchEvent)
-    {
-        if (pSceneTouchEvent.isActionDown())
-        {
-            if(contador<1){
-                contador++;
-                regionSlideActual=regionSlides[contador];
-                spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
-                attachChild(spriteFondo);
-            }
-            else{ //pasa al nivel 2
-               /* admEscenas.crearEscenaJuego1();
-                admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);
-                admEscenas.liberarEscenaJuego();*/
-            }
 
-        }
-        return false;
-    }
+        bSkip= new ButtonSprite(ControlJuego.ANCHO_CAMARA/4,ControlJuego.ALTO_CAMARA/2,regionBSkip,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            public boolean onAreaTouched(TouchEvent pTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                if(pTouchEvent.isActionDown()) {
+                    admEscenas.crearEscenaJuego1();
+                    admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);
+                    admEscenas.liberarEscenaJuego();
+                }
+                return true;
+            }
+        };
+        registerTouchArea(bSkip);
+        setTouchAreaBindingOnActionDownEnabled(true);
+        attachChild(bSkip);
+        bSiguente=  new ButtonSprite(ControlJuego.ANCHO_CAMARA-50,ControlJuego.ALTO_CAMARA/2,regionBSkip,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            public boolean onAreaTouched(TouchEvent pTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                if(pTouchEvent.isActionDown()) {
+                    if(contador<2){
+                        contador++;
+                        regionSlideActual=regionSlides[contador];
+                        EscenaHistoria2.this.detachChild(spriteFondo);
+                        EscenaHistoria2.this.detachChild(this);
+                        spriteFondo = cargarSprite(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2, regionSlideActual);
+                        EscenaHistoria2.this.attachChild(spriteFondo);
+                        EscenaHistoria2.this.attachChild(this);
 
+                    }
+                    else{
+                        admEscenas.crearEscenaJuego1();//escena juego 2
+                        admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);//escena juego 2
+                        admEscenas.liberarEscenaHistoria2();
+                    }
+
+                }
+                return true;
+            }
+        };
+        registerTouchArea(bSiguente);
+        setTouchAreaBindingOnActionDownEnabled(true);
+        attachChild(bSiguente);
+
+
+    }
 
     @Override
     public void onBackKeyPressed() {

@@ -19,6 +19,7 @@ public class AdministradorEscenas {
     private EscenaBase escenaJuego;
     private EscenaBase escenaJuego1;
     private EscenaBase escenaHistoria2;
+    private EscenaBase escenaJuego2;
 
     // El tipo de escena que se está mostrando
     private TipoEscena tipoEscenaActual = TipoEscena.ESCENA_SPLASH;
@@ -158,19 +159,19 @@ public class AdministradorEscenas {
     public void crearEscenaHistoria2(){escenaHistoria2= new EscenaHistoria2();}
     public void liberarEscenaHistoria2(){escenaHistoria2.liberarEscena();}
 
-    /*//*** Crea la escena de Juego Dos
-    public void crearEscenaJuegoDos() {
+
+    public void crearEscenaJuego2() {
         // Carga los recursos
-        admRecursos.cargarRecursosJuegoDos();
-        //escenaJuegoDos = new EscenaJuegoDos();
+       // admRecursos.cargarRecursosJuego2();
+        escenaJuego2 = new EscenaJuego2();
     }
 
     //*** Libera la escena de Juego Dos
-    public void liberarEscenaJuegoDos() {
-        admRecursos.liberarRecursosJuegoDos();
-        escenaJuegoDos.liberarEscena();
-        escenaJuegoDos = null;
+    public void liberarEscenaJuego2() {
+       // admRecursos.liberarRecursosJuego2();
+        escenaJuego2.liberarEscena();
+        escenaJuego2 = null;
     }
-*/
+
 
 }

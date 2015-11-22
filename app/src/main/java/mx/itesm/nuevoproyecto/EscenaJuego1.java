@@ -439,7 +439,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
     @Override
     public void liberarRecursos() {
-
+        this.detachSelf();      // La escena se deconecta del engine
+        this.dispose();         // Libera la memoria
+        liberarRecursos();
     }
 
     @Override

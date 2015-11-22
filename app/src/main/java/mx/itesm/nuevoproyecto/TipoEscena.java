@@ -9,7 +9,7 @@ package mx.itesm.nuevoproyecto;
         ESCENA_MENU,
         ESCENA_ACERCA_DE,
         ESCENA_JUEGO,
-        ESCENA_JUEGO_DOS,
+        ESCENA_JUEGO2,
         ESCENA_FISICA,
         ESCENA_INSTRUCCIONES,
         ESCENA_JUEGO1,
