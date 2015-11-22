@@ -5,6 +5,7 @@ import org.andengine.entity.scene.ITouchArea;
 import org.andengine.input.touch.TouchEvent;
 
 public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
+
     @Override
     public void cargarRecursos() {
 
@@ -18,7 +19,7 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     @Override
     public void onBackKeyPressed() {
         admEscenas.crearEscenaMenu();
-        admEscenas.setEscena(TipoEscena.ESCENA_JUEGO2);
+        admEscenas.setEscena(TipoEscena.ESCENA_MENU);
         admEscenas.liberarEscenaJuego2();
     }
 
