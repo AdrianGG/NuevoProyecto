@@ -30,6 +30,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionPlataforma2;
     private ITextureRegion regionPlataforma3;
     private ITextureRegion regionFondo;
+    private ITextureRegion regionFondo2;
+    private ITextureRegion regionFondo3;
     private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
     private Sprite obstaculo;
@@ -57,7 +59,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
     @Override
     public void cargarRecursos() {
-        regionFondo= cargarImagen("glitchfondo3.png");
+        regionFondo= cargarImagen("glitchfondo1.png");
+        regionFondo2= cargarImagen("glitchfondo2.png");
+        regionFondo3= cargarImagen("glitchfondo3.png");
         regionObstaculo= cargarImagen("obstaculo.png");
         regionPiso = cargarImagen("pisoRosa.png");
         regionPersonaje = cargarImagenMosaico("mildoros.png", 2290, 1091, 5, 10);
@@ -78,6 +82,11 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public void crearEscena() {
         fondo=new Sprite(ControlJuego.ANCHO_CAMARA/2,(ControlJuego.ALTO_CAMARA/3)+250,regionFondo,actividadJuego.getVertexBufferObjectManager());
         attachChild(fondo);
+        fondo=new Sprite(ControlJuego.ANCHO_CAMARA/2+3158,(ControlJuego.ALTO_CAMARA/3)+250,regionFondo2,actividadJuego.getVertexBufferObjectManager());
+        attachChild(fondo);
+        fondo=new Sprite(ControlJuego.ANCHO_CAMARA/2+(3158*2),(ControlJuego.ALTO_CAMARA/3)+250,regionFondo3,actividadJuego.getVertexBufferObjectManager());
+        attachChild(fondo);
+
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+4700,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
         personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager()){
