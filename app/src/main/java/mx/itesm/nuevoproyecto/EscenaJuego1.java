@@ -24,6 +24,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionBRetrocede;
     private ITextureRegion regionBSalta;
     private ITextureRegion regionObstaculo;
+    private ITextureRegion regionSensor;
     private ITextureRegion regionPiso;
     private ITextureRegion regionMeta;
     private ITextureRegion regionPlataforma;
@@ -35,6 +36,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
     private Sprite obstaculo;
+    private Sprite sensor;
     private Sprite piso;
     private Sprite meta;
     private Sprite plataforma1;
@@ -63,6 +65,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         regionFondo2= cargarImagen("glitchfondo2.png");
         regionFondo3= cargarImagen("glitchfondo3.png");
         regionObstaculo= cargarImagen("obstaculo.png");
+        regionSensor= cargarImagen("sensor.png");
         regionPiso = cargarImagen("pisoRosa.png");
         regionPersonaje = cargarImagenMosaico("mildoros.png", 2290, 1091, 5, 10);
         regionBCamina= cargarImagen("boton2.png");
@@ -101,6 +104,19 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             }
 
         };
+        sensor = new Sprite(personaje.getX(),personaje.getY()-100,regionSensor,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if(personaje.getScaleX()>0){
+                    this.setPosition(personaje.getX()+35,personaje.getY()-100);
+                }
+                if(personaje.getScaleX()<0){
+                    this.setPosition(personaje.getX()-35,personaje.getY()-100);
+                }
+            };
+        };
+        attachChild(sensor);
         // personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
         // Animacion Idle del personaje
         long tiempos[] = new long[50];
@@ -115,7 +131,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this))
+                if (sensor.collidesWith(this)&&!personajeSaltando)
                 {
 
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 75));
@@ -130,7 +146,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this))
+                if (sensor.collidesWith(this)&&!personajeSaltando)
                 {
 
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 75));
@@ -144,7 +160,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this))
+                if (sensor.collidesWith(this)&&!personajeSaltando)
                 {
 
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 75));
@@ -158,7 +174,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this))
+                if (sensor.collidesWith(this)&&!personajeSaltando)
                 {
 
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 75));
@@ -176,7 +192,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)){
+                if (sensor.collidesWith(this)){
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
                 }
 
@@ -187,7 +203,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)){
+                if (sensor.collidesWith(this)){
                     personaje.setPosition(personaje.getX(),this.getY() + (this.getHeight()));
                 }
 
@@ -198,7 +214,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)){
+                if (sensor.collidesWith(this)){
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
                 }
 
@@ -209,7 +225,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)){
+                if (sensor.collidesWith(this)){
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() -30));
                 }
 
@@ -220,7 +236,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)){
+                if (sensor.collidesWith(this)){
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
                 }
 
@@ -233,7 +249,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             protected void onManagedUpdate(float pSecondsElapsed)
             {
 
-                if (personaje.collidesWith(this)){
+                if (sensor.collidesWith(this)){
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
                 }
             };
@@ -243,8 +259,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
-                if (personaje.collidesWith(this)){
+                if (sensor.collidesWith(this)){
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()+30));
+
                 }
 
             };
