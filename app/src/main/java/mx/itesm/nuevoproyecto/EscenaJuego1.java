@@ -291,6 +291,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 // Responder al touch del botón
                 if (event.isActionDown())
                 {
+                    unregisterTouchArea(bRetrocede);
                     //El personaje mira hacia la derecha cuando se mueve a esa direccion
                     long tiempos[] = new long[50];
                     for(int i=10; i<15; i++) {
@@ -319,10 +320,10 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         bCamina.setScale(0.5f, 0.5f);
         attachChild(bCamina);
         bRetrocede = new ButtonSprite(100, 100, regionBRetrocede, actividadJuego.getVertexBufferObjectManager()){
-
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
+                unregisterTouchArea(bCamina);
                 if (event.isActionDown())
                 {
                     long tiempos[] = new long[50];
