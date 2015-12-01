@@ -299,7 +299,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
-                if (event.isActionDown())
+                if (event.isActionDown()&&!bRetrocede.isPressed())
                 {
                     unregisterTouchArea(bRetrocede);
                     //El personaje mira hacia la derecha cuando se mueve a esa direccion
@@ -333,9 +333,10 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
-                unregisterTouchArea(bCamina);
-                if (event.isActionDown())
+
+                if (event.isActionDown()&&!bCamina.isPressed())
                 {
+                    unregisterTouchArea(bCamina);
                     long tiempos[] = new long[50];
                     for(int i=10; i<15; i++) {
                         tiempos[i] = 100;
@@ -402,10 +403,11 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                             } else {
                                 long tiempos[] = new long[50];
                                 for (int i = 20; i < 24; i++) {
-                                    tiempos[i] = 100;
+                                    tiempos[i] = 50;
                                 }
                                 personaje.animate(tiempos, 0, tiempos.length - 1, true);
                             }
+
                             super.onModifierFinished(pItem);
                             personajeSaltando = false;
 
