@@ -378,11 +378,11 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                     float xn = xa;
                     float yn = ya;
                     //El parámetro avanza*50 sirve para "conservar" el momentum en el salto
-                    salto = new JumpModifier(2, xa, xn + (avanza * 50), ya, yn, -400);
+                    salto = new JumpModifier(3, xa, xn + (avanza * 50), ya, yn, -400);
                     personajeSaltando = true;
                     long tiempos[] = new long[50];
                     for (int i = 40; i < 42; i++) {
-                        tiempos[i] = 200;
+                        tiempos[i] = 50;
                     }
                     personaje.animate(tiempos, 0, tiempos.length - 1, false);
 
