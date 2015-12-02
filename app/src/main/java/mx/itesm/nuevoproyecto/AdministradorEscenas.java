@@ -150,13 +150,13 @@ public class AdministradorEscenas {
     //Crea la escena de JUEGO
     public void crearEscenaJuego() {
         // Carga los recursos de la animacion
-       // admRecursos.cargarRecursosJuego();
+        // admRecursos.cargarRecursosJuego();
         escenaJuego = new EscenaJuego();
     }
 
     //*** Libera la escena de JUEGO
     public void liberarEscenaJuego() {
-       // admRecursos.liberarRecursosJuego();
+        // admRecursos.liberarRecursosJuego();
         escenaJuego.liberarEscena();
         escenaJuego = null;
     }
@@ -174,13 +174,13 @@ public class AdministradorEscenas {
 
     public void crearEscenaJuego2() {
         // Carga los recursos
-       // admRecursos.cargarRecursosJuego2();
+        // admRecursos.cargarRecursosJuego2();
         escenaJuego2 = new EscenaJuego2();
     }
 
     //*** Libera la escena de Juego Dos
     public void liberarEscenaJuego2() {
-       // admRecursos.liberarRecursosJuego2();
+        // admRecursos.liberarRecursosJuego2();
         escenaJuego2.liberarEscena();
         escenaJuego2 = null;
     }

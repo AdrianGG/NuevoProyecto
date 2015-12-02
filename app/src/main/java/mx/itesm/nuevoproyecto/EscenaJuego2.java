@@ -20,7 +20,6 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     private TiledTextureRegion regionPersonaje;
-    private TiledTextureRegion regionPersonajeC;
     private ITextureRegion regionBCamina;
     private ITextureRegion regionBRetrocede;
     private ITextureRegion regionBSalta;
@@ -32,8 +31,6 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionPlataforma2;
     private ITextureRegion regionPlataforma3;
     private ITextureRegion regionFondo;
-    private ITextureRegion regionFondo2;
-    private ITextureRegion regionFondo3;
     private ITextureRegion regionEnemigo1;
     private ITextureRegion regionEnemigo2;
     private ITextureRegion regionEnemigo3;
@@ -64,6 +61,11 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
     public ButtonSprite bSalta;
+    public Sprite bVida1;
+    public Sprite bVida2;
+    public int vidas=2;
+    private ITextureRegion regionVida1;
+    private ITextureRegion regionVida2;
 
 
     @Override
@@ -83,7 +85,9 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         regionEnemigo3= cargarImagen("engrane3rosa.png");
         regionEnemigo4= cargarImagen("engrane4rosa.png");
         regionEnemigo5= cargarImagen("engrane5rosa.png");
-        //regionEnemigoVerde = cargarImagenMosaico("SmithTira.png", 2041,279,1,9);
+        //regionEnemigoVerde = cargarImagenMosaico("SmithTira.png", 2041,279,1,9);//
+        regionVida1 = cargarImagen("vida1.png");
+        regionVida2 = cargarImagen("vida2.png");
     }
 
     @Override

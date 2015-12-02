@@ -35,8 +35,6 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionPlataforma2;
     private ITextureRegion regionPlataforma3;
     private ITextureRegion regionFondo;
-    private ITextureRegion regionFondo2;
-    private ITextureRegion regionFondo3;
     private ITextureRegion regionVida1;
     private ITextureRegion regionVida2;
     private boolean personajeSaltando=false; // siempre se inicializa en falso
@@ -89,11 +87,11 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         regionPlataforma2=cargarImagen("base3.png");
         regionPlataforma3= cargarImagen("base4.png");
 
-        regionVida1 = cargarImagen("vida1.png");
+        regionVida1 = cargarImagen("vida1.png");//
         regionVida2 = cargarImagen("vida2.png");
 
 
-        musicaFondo = cargarSonidos("music/LeslieWai-Nocturnal.mp3");
+        musicaFondo = cargarSonidos("Music/LeslieWai-Nocturnal.mp3");
 
 
 

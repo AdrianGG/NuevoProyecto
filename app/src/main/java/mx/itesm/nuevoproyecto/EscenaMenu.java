@@ -48,7 +48,7 @@ public class EscenaMenu extends EscenaBase {
     private ButtonSprite btnAcercaDe;
     private ButtonSprite btnJugar;
     private ButtonSprite btnInstrucciones;
-     private boolean color = false;
+    private boolean color = false;
 
     public void cargarRecursos() {
         // Fondo
@@ -63,7 +63,7 @@ public class EscenaMenu extends EscenaBase {
         regionBtnAcercaDe2 = cargarImagen("botonazulmenu.png");
         regionBtnJugar2 = cargarImagen("botonazulmenu.png");
         regionBtnInsttrucciones2= cargarImagen("botonazulmenu.png");
-        musicaFondo = cargarSonidos("music/LeslieWai-Paradigm.mp3");
+        musicaFondo = cargarSonidos("Music/lesliewaiparadigm.mp3");
     }
 
 
@@ -109,12 +109,12 @@ public class EscenaMenu extends EscenaBase {
         ITextureRegion contenedor;
         if(color==true){ contenedor= regionBtnAcercaDe2;}
         else{contenedor= regionBtnAcercaDe;}
-            IMenuItem opcionAcercaDe = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_ACERCA_DE,
-                    contenedor, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
-            IMenuItem opcionJugar = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_JUGAR,
-                    contenedor, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
-            IMenuItem opcionInstrucciones = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_INSTRUCCIONES,
-                    contenedor, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
+        IMenuItem opcionAcercaDe = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_ACERCA_DE,
+                contenedor, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
+        IMenuItem opcionJugar = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_JUGAR,
+                contenedor, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
+        IMenuItem opcionInstrucciones = new ScaleMenuItemDecorator(new SpriteMenuItem(OPCION_INSTRUCCIONES,
+                contenedor, actividadJuego.getVertexBufferObjectManager()), 1.5f, 1);
 
 
         // Agrega las opciones al menú
