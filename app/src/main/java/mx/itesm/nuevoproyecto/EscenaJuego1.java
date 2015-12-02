@@ -15,6 +15,7 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 /**
+ * Escena echa por:
  * Created by A. iram on 02/10/2015.
  * Adrian Flores 01/12/2015
  */
@@ -366,7 +367,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         };;
         attachChild(plataforma2); //7ma en el nivel1
 
-        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA+4000, ControlJuego.ALTO_CAMARA-105,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
+        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA+1500, ControlJuego.ALTO_CAMARA-105,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
@@ -414,7 +415,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
-                if (event.isActionDown()&&!bRetrocede.isPressed())
+                if (event.isActionDown())
                 {
                     unregisterTouchArea(bRetrocede);
                     //El personaje mira hacia la derecha cuando se mueve a esa direccion
@@ -448,10 +449,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             @Override
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
-
-                if (event.isActionDown()&&!bCamina.isPressed())
+                unregisterTouchArea(bCamina);
+                if (event.isActionDown())
                 {
-                    unregisterTouchArea(bCamina);
                     long tiempos[] = new long[50];
                     for(int i=10; i<15; i++) {
                         tiempos[i] = 100;
@@ -487,21 +487,20 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
 
-                if (event.getAction()==MotionEvent.ACTION_DOWN&&!personajeSaltando) {
+                if (event.getAction()== MotionEvent.ACTION_DOWN&&!personajeSaltando) {
                     // Saltar
                     float xa = personaje.getX();
                     float ya = personaje.getY();
                     float xn = xa;
                     float yn = ya;
                     //El parámetro avanza*50 sirve para "conservar" el momentum en el salto
-                    salto = new JumpModifier(3, xa, xn + (avanza * 50), ya, yn, -400);
+                    JumpModifier salto = new JumpModifier(1, xa,xn+(avanza*50), ya, yn, -400);
                     personajeSaltando = true;
                     long tiempos[] = new long[50];
                     for (int i = 40; i < 42; i++) {
-                        tiempos[i] = 50;
+                        tiempos[i] = 200;
                     }
                     personaje.animate(tiempos, 0, tiempos.length - 1, false);
-
 
                     //registerTouchArea(bCamina);
                     //registerTouchArea(bRetrocede);
@@ -510,42 +509,39 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
                         @Override
                         protected void onModifierFinished(IEntity pItem) {
-                            if (bRetrocede.isPressed() || bCamina.isPressed()) {
+                            if(bRetrocede.isPressed()||bCamina.isPressed()){
                                 long tiempos[] = new long[50];
-                                for (int i = 10; i < 15; i++) {
+                                for(int i=10; i<15; i++) {
+                                    tiempos[i] = 100;
+                                }
+                                personaje.animate(tiempos,0,tiempos.length-1,true);
+                            }
+                            else{
+                                long tiempos[] = new long[50];
+                                for (int i = 20; i < 24; i++) {
                                     tiempos[i] = 100;
                                 }
                                 personaje.animate(tiempos, 0, tiempos.length - 1, true);
-                            } else {
-                                long tiempos[] = new long[50];
-                                for (int i = 20; i < 24; i++) {
-                                    tiempos[i] = 50;
-                                }
-                                personaje.animate(tiempos, 0, tiempos.length - 1, true);
                             }
-
                             super.onModifierFinished(pItem);
                             personajeSaltando = false;
 
                         }
 
                     };
-
-
+                    sensor.registerEntityModifier(paralelo);
+                    personaje.registerEntityModifier(paralelo);
                 }
-
-                personaje.registerEntityModifier(paralelo);
 
                 return super.onAreaTouched(event, x, y);
 
             }
 
         };
-
         bSalta.setScale(0.5f,0.5f);
         attachChild(bSalta);
-
     }
+
 
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
