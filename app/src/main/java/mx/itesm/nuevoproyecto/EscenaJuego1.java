@@ -96,7 +96,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
 
     }
-
+//
 
     @Override
     public void crearEscena() {
