@@ -679,20 +679,21 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                         protected void onModifierFinished(IEntity pItem) {
                             if(bRetrocede.isPressed()||bCamina.isPressed()){
                                 long tiempos[] = new long[32];
-                                for(int i=10; i<15; i++) {
+                                for(int i=0; i<7; i++) {
                                     tiempos[i] = 100;
                                 }
                                 personaje.animate(tiempos,0,tiempos.length-1,true);
                             }
                             else{
                                 long tiempos[] = new long[32];
-                                for (int i = 20; i < 24; i++) {
+                                for (int i = 16; i < 21; i++) {
                                     tiempos[i] = 100;
                                 }
                                 personaje.animate(tiempos, 0, tiempos.length - 1, true);
                             }
                             super.onModifierFinished(pItem);
                             personajeSaltando = false;
+
 
                         }
 
@@ -709,6 +710,7 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         bSalta.setScale(0.5f,0.5f);
         attachChild(bSalta);
     }
+
 
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
