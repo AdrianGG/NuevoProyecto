@@ -313,33 +313,30 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         };;
         attachChild(plataforma1); //5ta en el nivel1
 
-        //plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+2550, ControlJuego.ALTO_CAMARA-240,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
-          //  @Override
-        //    protected void onManagedUpdate(float pSecondsElapsed)
-      //      {
-    //            if (sensor.collidesWith(this)&&!bSalta.isPressed()){
-  //                  personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
+        plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+2550, ControlJuego.ALTO_CAMARA-240,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+               if (sensor.collidesWith(this)&&!bSalta.isPressed()){
+                   personaje.unregisterEntityModifier(paralelo);
+                   personajeSaltando=false;
+                   personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
 
-//                }
+                }
 
-          //  };
-        //};;
-        //attachChild(plataforma2); //6ta en el nivel1
+            };
+        };;
+        attachChild(plataforma2); //6ta en el nivel1
 
         plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+3250, ControlJuego.ALTO_CAMARA-300,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
                 if (sensor.collidesWith(this)&&!bSalta.isPressed()){
-<<<<<<< HEAD
-
-                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()+30));
-
-=======
                     personaje.unregisterEntityModifier(paralelo);
                     personajeSaltando=false;
-                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
->>>>>>> origin/master
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()+30));
+
 
                 }
 
@@ -352,7 +349,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             protected void onManagedUpdate(float pSecondsElapsed)
             {
                 if (sensor.collidesWith(this)&&!bSalta.isPressed()){
-<<<<<<< HEAD
+                    personaje.unregisterEntityModifier(paralelo);
+                    personajeSaltando=false;
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
                 }
 
@@ -364,12 +362,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             protected void onManagedUpdate(float pSecondsElapsed)
             {
                 if (sensor.collidesWith(this)&&!bSalta.isPressed()){
-=======
+
                     personaje.unregisterEntityModifier(paralelo);
                     personajeSaltando=false;
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()+30));
 
->>>>>>> origin/master
+
 
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() -30));
                 }
@@ -382,7 +380,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             protected void onManagedUpdate(float pSecondsElapsed) {
                 if (sensor.collidesWith(this)&&!bSalta.isPressed())
                 {
-
+                    personaje.unregisterEntityModifier(paralelo);
+                    personajeSaltando=false;
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
                 }
             };
@@ -468,18 +467,18 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             public boolean onAreaTouched(TouchEvent event, float x, float y) {
                 // Responder al touch del botón
 
-                if (event.getAction()==MotionEvent.ACTION_DOWN&&!personajeSaltando) {
+                if (event.getAction()== MotionEvent.ACTION_DOWN&&!personajeSaltando) {
                     // Saltar
                     float xa = personaje.getX();
                     float ya = personaje.getY();
                     float xn = xa;
                     float yn = ya;
                     //El parámetro avanza*50 sirve para "conservar" el momentum en el salto
-                    salto = new JumpModifier(3, xa, xn + (avanza * 50), ya, yn, -400);
+                    JumpModifier salto = new JumpModifier(1, xa,xn+(avanza*50), ya, yn, -400);
                     personajeSaltando = true;
                     long tiempos[] = new long[50];
                     for (int i = 40; i < 42; i++) {
-                        tiempos[i] = 50;
+                        tiempos[i] = 200;
                     }
                     personaje.animate(tiempos, 0, tiempos.length - 1, false);
 
@@ -490,31 +489,29 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
                         @Override
                         protected void onModifierFinished(IEntity pItem) {
-                            if (bRetrocede.isPressed() || bCamina.isPressed()) {
+                            if(bRetrocede.isPressed()||bCamina.isPressed()){
                                 long tiempos[] = new long[50];
-                                for (int i = 10; i < 15; i++) {
+                                for(int i=10; i<15; i++) {
+                                    tiempos[i] = 100;
+                                }
+                                personaje.animate(tiempos,0,tiempos.length-1,true);
+                            }
+                            else{
+                                long tiempos[] = new long[50];
+                                for (int i = 20; i < 24; i++) {
                                     tiempos[i] = 100;
                                 }
                                 personaje.animate(tiempos, 0, tiempos.length - 1, true);
-                            } else {
-                                long tiempos[] = new long[50];
-                                for (int i = 20; i < 24; i++) {
-                                    tiempos[i] = 50;
-                                }
-                                personaje.animate(tiempos, 0, tiempos.length - 1, true);
                             }
-
                             super.onModifierFinished(pItem);
                             personajeSaltando = false;
 
                         }
 
                     };
-
-
+                    sensor.registerEntityModifier(paralelo);
+                    personaje.registerEntityModifier(paralelo);
                 }
-
-                personaje.registerEntityModifier(paralelo);
 
                 return super.onAreaTouched(event, x, y);
 
