@@ -56,8 +56,6 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     @Override
     public void cargarRecursos() {
         regionFondo= cargarImagen("glitchfondomasalto.png");
-        regionFondo2= cargarImagen("glitchfondo2.png");
-        regionFondo3= cargarImagen("glitchfondo3.png");
         regionObstaculo= cargarImagen("base1A.png");
         regionSensor= cargarImagen("sensor.png");
         regionPiso = cargarImagen("pisoAzul.png");

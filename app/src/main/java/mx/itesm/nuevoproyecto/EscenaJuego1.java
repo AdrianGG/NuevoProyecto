@@ -65,8 +65,6 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     @Override
     public void cargarRecursos() {
         regionFondo= cargarImagen("glitchfondomasalto.png");
-        regionFondo2= cargarImagen("glitchfondo2.png");
-        regionFondo3= cargarImagen("glitchfondo3.png");
         regionObstaculo= cargarImagen("obstaculo.png");
         regionSensor= cargarImagen("sensor.png");
         regionPiso = cargarImagen("pisoRosa.png");
@@ -97,7 +95,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             attachChild(fondo);
         }
         //CHECAR DONDE ESTARA LA META
-        meta= new Sprite(ControlJuego.ANCHO_CAMARA+6000,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
+        meta= new Sprite(ControlJuego.ANCHO_CAMARA+1600,ControlJuego.ALTO_CAMARA+500,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
         personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA-2000, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager()){
             @Override
@@ -377,7 +375,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             };
         };;
         attachChild(plataforma1); //8va en el nivel1
-        plataforma3 = new Sprite(ControlJuego.ANCHO_CAMARA+4650, ControlJuego.ALTO_CAMARA-160,	regionPlataforma3,actividadJuego.getVertexBufferObjectManager()){
+        plataforma3 = new Sprite(ControlJuego.ANCHO_CAMARA+2300, ControlJuego.ALTO_CAMARA-160,	regionPlataforma3,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
@@ -395,7 +393,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             };
         };;
         attachChild(plataforma3); //9na en el nivel1
-        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA+5400, ControlJuego.ALTO_CAMARA-300,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
+        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA+3000, ControlJuego.ALTO_CAMARA-200,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
                 if (sensor.collidesWith(this)&&!bSalta.isPressed())
@@ -406,6 +404,57 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             };
         };
         attachChild(obstaculo); //10ma en el nivel1
+
+        plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+3000, ControlJuego.ALTO_CAMARA+200,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (sensor.collidesWith(this)&&!bSalta.isPressed()){
+
+
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
+
+
+                    personaje.unregisterEntityModifier(paralelo);
+                    personajeSaltando=false;
+
+
+
+                }
+
+            };
+        };;
+        attachChild(plataforma2); //11va en el nivel1
+        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA+2300, ControlJuego.ALTO_CAMARA+400,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if (sensor.collidesWith(this)&&!bSalta.isPressed())
+                {
+
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
+                }
+            };
+        };
+        attachChild(obstaculo);//12va plataforma
+        plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+1900, ControlJuego.ALTO_CAMARA+400,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (sensor.collidesWith(this)&&!bSalta.isPressed()){
+
+
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
+
+
+                    personaje.unregisterEntityModifier(paralelo);
+                    personajeSaltando=false;
+
+
+
+                }
+
+            };
+        };
 
         //-------------------------------------------------
         bCamina = new ButtonSprite(210, 100, regionBCamina, actividadJuego.getVertexBufferObjectManager()){
