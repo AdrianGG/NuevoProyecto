@@ -95,7 +95,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //CHECAR DONDE ESTARA LA META
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+6000,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
-        personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager()){
+        personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA-3000, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed){
                 if(this.getY() < ControlJuego.ALTO_CAMARA/3 -800){
@@ -246,7 +246,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //attachChild(piso);
         setBackgroundEnabled(true);
         //-450 altura minima de las plataformas
-        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA-300, ControlJuego.ALTO_CAMARA-450,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
+        obstaculo = new Sprite(ControlJuego.ANCHO_CAMARA-3000, ControlJuego.ALTO_CAMARA-450,	regionObstaculo,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
                 if (sensor.collidesWith(this)&&!bSalta.isPressed())
@@ -259,7 +259,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             };
         };
         attachChild(obstaculo); //1ra en el nivel1
-        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA+600, ControlJuego.ALTO_CAMARA-250,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
+        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA-2500, ControlJuego.ALTO_CAMARA-250,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
