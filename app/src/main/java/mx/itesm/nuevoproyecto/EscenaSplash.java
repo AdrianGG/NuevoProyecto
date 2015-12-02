@@ -28,17 +28,7 @@ public class EscenaSplash extends EscenaBase {
 
 
     // Carga todos los recursos para ESTA ESCENA.
-    private void cargarSonidos() {
-        try {
-            musicaFondo = MusicFactory.createMusicFromAsset(admEscenas.engine.getMusicManager(), actividadJuego, "music/Trancer.mp3");
-        }
-        catch (IOException e) {
-            Log.i("cargarSonidos", "No se puede cargar la musica");
-        }
-        // Reproducir
-        musicaFondo.setLooping(true);
-        musicaFondo.play();
-    }
+
     @Override
     public void cargarRecursos() {
         regionFondo = cargarImagen("logotec.png");

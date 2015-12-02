@@ -62,6 +62,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
 
 
+
     @Override
     public void cargarRecursos() {
         regionFondo= cargarImagen("glitchfondomasalto.png");
@@ -86,7 +87,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
     @Override
     public void crearEscena() {
-
+        EscenaMenu.musicaFondo.release();
         float xF = ControlJuego.ANCHO_CAMARA/2-3158;
         for(int i = 0; i<=5; i++){
             fondo=new Sprite(xF+(3158*i),(ControlJuego.ALTO_CAMARA/2+150),regionFondo,actividadJuego.getVertexBufferObjectManager());

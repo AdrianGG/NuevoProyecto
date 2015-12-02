@@ -2,6 +2,7 @@ package mx.itesm.nuevoproyecto;
 
 
 
+import org.andengine.audio.music.Music;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.background.SpriteBackground;
 import org.andengine.entity.scene.menu.MenuScene;
@@ -12,6 +13,7 @@ import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.opengl.texture.region.ITextureRegion;
 
+import java.security.PublicKey;
 import java.util.Random;
 
 /**
@@ -33,6 +35,8 @@ public class EscenaMenu extends EscenaBase {
     // Sprites sobre la escena
     private Sprite spriteFondo;
 
+    //Musica
+    public static Music musicaFondo;
     // Un menú de tipo SceneMenu
     private MenuScene menu;     // Contenedor de las opciones
     // Constantes para cada opción
@@ -59,7 +63,7 @@ public class EscenaMenu extends EscenaBase {
         regionBtnAcercaDe2 = cargarImagen("botonazulmenu.png");
         regionBtnJugar2 = cargarImagen("botonazulmenu.png");
         regionBtnInsttrucciones2= cargarImagen("botonazulmenu.png");
-
+        musicaFondo = cargarSonidos("music/LeslieWai-Paradigm.mp3");
     }
 
 
@@ -81,7 +85,7 @@ public class EscenaMenu extends EscenaBase {
         agregarFondoMenu();
         // Mostrar opciones de menú
         agregarMenu();
-
+        musicaFondo.play();
     }
 
     private void agregarFondoMenu() {
