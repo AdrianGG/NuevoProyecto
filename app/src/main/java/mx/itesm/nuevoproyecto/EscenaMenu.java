@@ -69,7 +69,12 @@ public class EscenaMenu extends EscenaBase {
 
     @Override
     public void crearEscena() {
+        if(EscenaJuego1.musicaFondo!=null){
+            if(EscenaJuego1.musicaFondo.isPlaying()){
+                EscenaJuego1.musicaFondo.release();
+            }
 
+        }
         // Creamos el sprite de manera óptima
         Random rand = new Random();
         int n = rand.nextInt(20);
