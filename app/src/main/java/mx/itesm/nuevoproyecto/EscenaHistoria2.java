@@ -24,8 +24,8 @@ public class EscenaHistoria2 extends EscenaBase {
         regionSlides[0] = cargarImagen("juego7.jpg");
         regionSlides[1] = cargarImagen("juego8.jpg");
         regionSlideActual=regionSlides[0];
-        regionBSkip= cargarImagen("bskip.png");
-        regionBSiguente= cargarImagen("bskip.png");
+        regionBSkip= cargarImagen("botonazulmenu.png");
+        regionBSiguente= cargarImagen("botonrosamenu.png");
 
     }
 
