@@ -14,5 +14,6 @@ package mx.itesm.nuevoproyecto;
         ESCENA_INSTRUCCIONES,
         ESCENA_JUEGO1,
         ESCENA_HISTORIA2,
-        ESCENA_JUEGO3
+        ESCENA_JUEGO3,
+       ESCENA_GAMEOVER
  }
