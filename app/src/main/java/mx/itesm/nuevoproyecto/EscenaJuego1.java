@@ -2,6 +2,7 @@ package mx.itesm.nuevoproyecto;
 
 import android.view.MotionEvent;
 
+import org.andengine.audio.music.Music;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.JumpModifier;
 import org.andengine.entity.modifier.ParallelEntityModifier;
@@ -63,6 +64,10 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public Sprite bVida1;
     public Sprite bVida2;
 
+    public static Music musicaFondo;
+
+
+
 
 
 
@@ -84,8 +89,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         regionPlataforma= cargarImagen("base2.png");
         regionPlataforma2=cargarImagen("base3.png");
         regionPlataforma3= cargarImagen("base4.png");
+
         regionVida1 = cargarImagen("vida1.png");
         regionVida2 = cargarImagen("vida2.png");
+
+        musicaFondo = cargarSonidos("music/LeslieWai-Nocturnal.mp3");
+
 
 
     }
@@ -93,7 +102,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
     @Override
     public void crearEscena() {
-
+        EscenaMenu.musicaFondo.release();
         float xF = ControlJuego.ANCHO_CAMARA/2-3158;
         for(int i = 0; i<=5; i++){
             fondo=new Sprite(xF+(3158*i),(ControlJuego.ALTO_CAMARA/2+150),regionFondo,actividadJuego.getVertexBufferObjectManager());
@@ -103,6 +112,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             fondo=new Sprite(xF+(3158*i),(ControlJuego.ALTO_CAMARA/2+1320),regionFondo,actividadJuego.getVertexBufferObjectManager());
             attachChild(fondo);
         }
+        musicaFondo.setLooping(true);
+        musicaFondo.play();
         //CHECAR DONDE ESTARA LA META
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+6000,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
