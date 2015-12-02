@@ -99,7 +99,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //CHECAR DONDE ESTARA LA META
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+6000,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
-        personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA-3000, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager()){
+        personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA-2000, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed){
                 if(this.getY() < ControlJuego.ALTO_CAMARA/3 -800){
@@ -263,7 +263,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             };
         };
         attachChild(obstaculo); //1ra en el nivel1
-        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA-2500, ControlJuego.ALTO_CAMARA-250,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
+        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA-2500, ControlJuego.ALTO_CAMARA-150,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
@@ -276,7 +276,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             };
         };;
         attachChild(plataforma1); //2da en el nivel1
-        plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+1500, ControlJuego.ALTO_CAMARA-250,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
+      /*  plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA-1700, ControlJuego.ALTO_CAMARA-50,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
@@ -289,8 +289,21 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
             };
         };;
-        attachChild(plataforma2); //3ra en el nivel1
-        plataforma3 = new Sprite(ControlJuego.ANCHO_CAMARA+1950, ControlJuego.ALTO_CAMARA-340,	regionPlataforma3,actividadJuego.getVertexBufferObjectManager()){
+        attachChild(plataforma2); //3ra en el nivel1*/
+        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA-1700, ControlJuego.ALTO_CAMARA-50,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed)
+            {
+                if (sensor.collidesWith(this)&&!bSalta.isPressed()){
+                    personaje.unregisterEntityModifier(paralelo);
+                    personajeSaltando=false;
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()));
+                }
+
+            };
+        };;
+        attachChild(plataforma1);
+       plataforma3 = new Sprite(ControlJuego.ANCHO_CAMARA-1000, ControlJuego.ALTO_CAMARA-150,	regionPlataforma3,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
@@ -303,7 +316,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             };
         };;
         attachChild(plataforma3); //4ta en el nivel1
-        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA+2400, ControlJuego.ALTO_CAMARA-450,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
+
+        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA-130, ControlJuego.ALTO_CAMARA-200,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
@@ -330,7 +344,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //};;
         //attachChild(plataforma2); //6ta en el nivel1
 
-        plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+3250, ControlJuego.ALTO_CAMARA-300,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
+        plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+700, ControlJuego.ALTO_CAMARA-200,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
