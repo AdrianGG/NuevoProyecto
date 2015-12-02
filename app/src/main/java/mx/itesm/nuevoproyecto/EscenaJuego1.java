@@ -365,7 +365,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         };;
         attachChild(plataforma2); //7ma en el nivel1
 
-        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA+4000, ControlJuego.ALTO_CAMARA-105,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
+        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA+1500, ControlJuego.ALTO_CAMARA-105,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
