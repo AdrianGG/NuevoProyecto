@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mx.itesm.nuevoproyecto" >
+    package="mx.itesm.Glitch" >
 <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
     <application
 
@@ -9,7 +9,7 @@
         android:label="Glitch"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ControlJuego"
+            android:name="mx.itesm.Glitch.ControlJuego"
             android:label="Glitch" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

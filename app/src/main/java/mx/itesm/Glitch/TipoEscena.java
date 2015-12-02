@@ -1,4 +1,4 @@
-package mx.itesm.nuevoproyecto;
+package mx.itesm.Glitch;
 
 /**
  * Created by A. iram on 01/10/2015.
