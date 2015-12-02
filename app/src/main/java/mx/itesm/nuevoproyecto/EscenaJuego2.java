@@ -711,6 +711,7 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         attachChild(bSalta);
     }
 
+
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
 
