@@ -518,7 +518,7 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
 
         //Enemigos
         enemigo1 = new Sprite(ControlJuego.ANCHO_CAMARA+3200, ControlJuego.ALTO_CAMARA-325,	regionEnemigo1,actividadJuego.getVertexBufferObjectManager()) {
-
+            
         };
         attachChild(enemigo1);
         enemigo1 = new Sprite(ControlJuego.ANCHO_CAMARA+3200, ControlJuego.ALTO_CAMARA-600,	regionEnemigo1,actividadJuego.getVertexBufferObjectManager()) {
