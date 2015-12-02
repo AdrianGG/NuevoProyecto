@@ -33,10 +33,6 @@ public class EscenaJuego3 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionPlataforma2;
     private ITextureRegion regionPlataforma3;
     private ITextureRegion regionFondo;
-    private ITextureRegion regionFondo2;
-    private ITextureRegion regionFondo3;
-    private ITextureRegion regionEnemigo1;
-    private ITextureRegion regionEnemigo2;
     private ITextureRegion regionEnemigo3;
     private ITextureRegion regionEnemigo4;
     private ITextureRegion regionEnemigo5;
@@ -50,8 +46,6 @@ public class EscenaJuego3 extends EscenaBase implements IOnAreaTouchListener {
     private Sprite plataforma2;
     private Sprite plataforma3;
     private Sprite fondo;
-    private Sprite enemigo1;
-    private Sprite enemigo2;
     private Sprite enemigo3;
     private Sprite enemigo4;
     private Sprite enemigo5;
@@ -81,11 +75,9 @@ public class EscenaJuego3 extends EscenaBase implements IOnAreaTouchListener {
         regionPlataforma= cargarImagen("base2.png");
         regionPlataforma2=cargarImagen("base3.png");
         regionPlataforma3= cargarImagen("base4.png");
-        regionEnemigo1= cargarImagen("engrane1.png");
-        regionEnemigo2= cargarImagen("engrane2.png");
-        regionEnemigo3= cargarImagen("engrane3.png");
-        regionEnemigo4= cargarImagen("engrane4.png");
-        regionEnemigo5= cargarImagen("engrane5.png");
+        regionEnemigo3= cargarImagen("engrane3azul.png");
+        regionEnemigo4= cargarImagen("engrane4azul.png");
+        regionEnemigo5= cargarImagen("engrane5azul.png");
     }
 
     @Override
@@ -514,48 +506,92 @@ public class EscenaJuego3 extends EscenaBase implements IOnAreaTouchListener {
         attachChild(obstaculo); //15va en el nivel
 
         //Enemigos
-        enemigo1 = new Sprite(ControlJuego.ANCHO_CAMARA+3200, ControlJuego.ALTO_CAMARA-325,	regionEnemigo1,actividadJuego.getVertexBufferObjectManager()) {
-
+        enemigo5 = new Sprite(ControlJuego.ANCHO_CAMARA+3200, ControlJuego.ALTO_CAMARA-325,	regionEnemigo5,actividadJuego.getVertexBufferObjectManager()) {
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
-        attachChild(enemigo1);
-        enemigo1 = new Sprite(ControlJuego.ANCHO_CAMARA+3200, ControlJuego.ALTO_CAMARA-600,	regionEnemigo1,actividadJuego.getVertexBufferObjectManager()) {
-
+        attachChild(enemigo5);
+        enemigo5 = new Sprite(ControlJuego.ANCHO_CAMARA+3200, ControlJuego.ALTO_CAMARA-600,	regionEnemigo5,actividadJuego.getVertexBufferObjectManager()) {
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
-        attachChild(enemigo1);
-        enemigo2 = new Sprite(ControlJuego.ANCHO_CAMARA+1900, ControlJuego.ALTO_CAMARA-500,	regionEnemigo2,actividadJuego.getVertexBufferObjectManager()) {
-
+        attachChild(enemigo5);
+        enemigo4 = new Sprite(ControlJuego.ANCHO_CAMARA+1900, ControlJuego.ALTO_CAMARA-500,	regionEnemigo4,actividadJuego.getVertexBufferObjectManager()) {
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
-        attachChild(enemigo2);
-        enemigo2 = new Sprite(ControlJuego.ANCHO_CAMARA+5700, ControlJuego.ALTO_CAMARA+100,	regionEnemigo2,actividadJuego.getVertexBufferObjectManager()) {
-
+        attachChild(enemigo4);
+        enemigo4 = new Sprite(ControlJuego.ANCHO_CAMARA+5700, ControlJuego.ALTO_CAMARA+100,	regionEnemigo4,actividadJuego.getVertexBufferObjectManager()) {
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
-        attachChild(enemigo2);
+        attachChild(enemigo4);
         enemigo3 = new Sprite(ControlJuego.ANCHO_CAMARA+500, ControlJuego.ALTO_CAMARA-500,	regionEnemigo3,actividadJuego.getVertexBufferObjectManager()) {
-
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
         attachChild(enemigo3);
         enemigo3 = new Sprite(ControlJuego.ANCHO_CAMARA+6950, ControlJuego.ALTO_CAMARA-600,	regionEnemigo3,actividadJuego.getVertexBufferObjectManager()) {
-
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
         attachChild(enemigo3);
         enemigo4 = new Sprite(ControlJuego.ANCHO_CAMARA+1200, ControlJuego.ALTO_CAMARA-450,	regionEnemigo4,actividadJuego.getVertexBufferObjectManager()) {
-
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
         attachChild(enemigo4);
         enemigo4 = new Sprite(ControlJuego.ANCHO_CAMARA+4450, ControlJuego.ALTO_CAMARA-125,	regionEnemigo4,actividadJuego.getVertexBufferObjectManager()) {
-
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
         attachChild(enemigo4);
         enemigo4 = new Sprite(ControlJuego.ANCHO_CAMARA+5950, ControlJuego.ALTO_CAMARA-625,	regionEnemigo4,actividadJuego.getVertexBufferObjectManager()) {
-
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
         attachChild(enemigo4);
         enemigo5 = new Sprite(ControlJuego.ANCHO_CAMARA+8450, ControlJuego.ALTO_CAMARA-500,	regionEnemigo5,actividadJuego.getVertexBufferObjectManager()) {
-
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
         attachChild(enemigo5);
         enemigo5 = new Sprite(ControlJuego.ANCHO_CAMARA+9450, ControlJuego.ALTO_CAMARA-500,	regionEnemigo5,actividadJuego.getVertexBufferObjectManager()) {
-
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(personaje.collidesWith(this)){
+                    vidas --;
+                }
+            };
         };
         attachChild(enemigo5);
         //-------------------------------------------------

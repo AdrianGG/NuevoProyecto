@@ -21,6 +21,7 @@ public class AdministradorEscenas {
     private EscenaBase escenaHistoria2;
     private EscenaBase escenaJuego2;
     private EscenaBase escenaJuego3;
+    private EscenaBase GameOver;
 
 
     // El tipo de escena que se está mostrando
@@ -93,6 +94,9 @@ public class AdministradorEscenas {
                 break;
             case ESCENA_JUEGO3:
                 setEscenaBase(escenaJuego3);
+                break;
+            case ESCENA_GAMEOVER:
+                setEscenaBase(GameOver);
                 break;
         }
     }
@@ -192,6 +196,17 @@ public class AdministradorEscenas {
         escenaJuego3.liberarEscena();
         escenaJuego3 = null;
     }
+    public void crearGameover() {
+        // Carga los recursos
+        // admRecursos.cargarRecursosJuego3();
+         GameOver= new GameOver();
+    }
 
+    //*** Libera la escena de Juego Dos
+    public void liberarGameover() {
+        // admRecursos.liberarRecursosJuego3();
+        escenaJuego3.liberarEscena();
+        escenaJuego3 = null;
+    }
 
 }
