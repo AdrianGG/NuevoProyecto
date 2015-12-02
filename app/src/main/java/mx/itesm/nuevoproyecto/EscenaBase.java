@@ -2,6 +2,8 @@ package mx.itesm.nuevoproyecto;
 
 import android.util.Log;
 
+
+
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -18,6 +20,7 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TextureRegionFactory;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.opengl.util.GLState;
+import org.andengine.util.StreamUtils;
 
 import java.io.IOException;
 
@@ -79,6 +82,7 @@ public abstract class EscenaBase extends Scene {
         }
         return region;
     }
+
 
     // Métodos abstractos
     public abstract void cargarRecursos();  // Carga imágenes/audio/música/videos/etc.

@@ -1,5 +1,7 @@
 package mx.itesm.nuevoproyecto;
 
+
+
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.background.SpriteBackground;
 import org.andengine.entity.scene.menu.MenuScene;
@@ -25,6 +27,7 @@ public class EscenaMenu extends EscenaBase {
     private ITextureRegion regionBtnAcercaDe2;
     private ITextureRegion regionBtnJugar2;
     private ITextureRegion regionBtnInsttrucciones2;
+
 
 
     // Sprites sobre la escena
@@ -57,11 +60,12 @@ public class EscenaMenu extends EscenaBase {
         regionBtnJugar2 = cargarImagen("botonazulmenu.png");
         regionBtnInsttrucciones2= cargarImagen("botonazulmenu.png");
 
-
     }
+
 
     @Override
     public void crearEscena() {
+
         // Creamos el sprite de manera óptima
         Random rand = new Random();
         int n = rand.nextInt(20);
@@ -73,11 +77,11 @@ public class EscenaMenu extends EscenaBase {
         SpriteBackground fondo = new SpriteBackground(1,1,1,spriteFondo);
         setBackground(fondo);
         setBackgroundEnabled(true);
-
         // Mostrar un recuadro atrás del menú
         agregarFondoMenu();
         // Mostrar opciones de menú
         agregarMenu();
+
     }
 
     private void agregarFondoMenu() {
