@@ -96,18 +96,9 @@ public abstract class EscenaBase extends Scene {
         }
         return region;
     }
-    //Vidas NOVA AQUI
-    protected int VidaRestante(int vidas){
-        vidas = vidas-1;
-        return vidas;
-    } ;
 
-    public boolean Muerto(int vidas){
-        if (vidas < 0) {
-            vivo = false;
-        }
-        return vivo;
-    }
+
+
 
 
     // Métodos abstractos

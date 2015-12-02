@@ -20,6 +20,7 @@ public class ControlJuego extends SimpleBaseGameActivity {
     // Dimensiones de la cámara. Se ajustará (escalará) a cualquier pantalla física.
     public static final int ANCHO_CAMARA = 1280;
     public static final int ALTO_CAMARA = 800;
+    public static int vidas = 2;
     // La cámara
     public static Camera camara;
     // El administrador de escenas (se encarga de cambiar las escenas)

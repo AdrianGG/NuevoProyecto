@@ -63,6 +63,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public ButtonSprite bSalta;
     public Sprite bVida1;
     public Sprite bVida2;
+    public int vidas=2;
 
     public static Music musicaFondo;
 
@@ -90,6 +91,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
 
         regionVida1 = cargarImagen("vida1.png");
         regionVida2 = cargarImagen("vida2.png");
+
 
         musicaFondo = cargarSonidos("music/LeslieWai-Nocturnal.mp3");
 
@@ -149,6 +151,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         }
         personaje.animate(tiempos, 0, tiempos.length - 1, true);
         attachChild(personaje);//
+
 
         // Aqui iran todas las plataformas NOTA: todas se llaman obstaculo o plataforma
         piso = new Sprite(personaje.getX(),personaje.getY()-200,regionPiso,actividadJuego.getVertexBufferObjectManager()){
@@ -545,7 +548,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         };
         bRetrocede.setScale(0.5f, 0.5f);
         attachChild(bRetrocede);
-
+        bVida1 = new Sprite(personaje.getX(),personaje.getY()-200,regionVida1,actividadJuego.getVertexBufferObjectManager());
+        bVida1.setScale(0.5f,0.5f);
+        attachChild(bVida1);
+        bVida2 = new Sprite(personaje.getX(),personaje.getY()-200,regionVida2,actividadJuego.getVertexBufferObjectManager());
+        bVida2.setScale(0.5f,0.5f);
+        attachChild(bVida2);
         bSalta = new ButtonSprite(1200, 100, regionBSalta,actividadJuego.getVertexBufferObjectManager()) {
 
             @Override
@@ -606,17 +614,14 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         bSalta.setScale(0.5f,0.5f);
         attachChild(bSalta);
 
-    bVida1 = new Sprite(708,100,regionVida1,actividadJuego.getVertexBufferObjectManager()) {
 
-    };
-        bVida2 = new Sprite(592,100,regionVida2,actividadJuego.getVertexBufferObjectManager()) {
-
-        };
     }
 
 
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
+
+
 
         registerTouchArea(bCamina);
         registerTouchArea(bRetrocede);
@@ -630,9 +635,18 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         //Esto sigue al personaje, asegurarse que los controles se queden dentro de la camara
         ControlJuego.camara.setChaseEntity(personaje);
         bCamina.setPosition(personaje.getX() - 390, personaje.getY() - 300);
-        bRetrocede.setPosition(personaje.getX()-500,personaje.getY()-300);
+        bRetrocede.setPosition(personaje.getX() - 500, personaje.getY() - 300);
         bSalta.setPosition(personaje.getX() + 500, personaje.getY()-300);
+        bVida1.setPosition(personaje.getX()+bVida1.getWidth()/4, personaje.getY() - 300);
+        bVida2.setPosition(personaje.getX()-bVida2.getWidth()/4, personaje.getY() - 300);
         //-------------------------------------------------------------------------------------------------
+        //
+        if(vidas<=1){
+            bVida2.detachSelf();
+        }
+        if(vidas==0){
+            //Mandar a escena de gamer over
+        }
         // distancia de personaje-meta para detectar el paso de nivel/
         double d;
         float xp = personaje.getX();
