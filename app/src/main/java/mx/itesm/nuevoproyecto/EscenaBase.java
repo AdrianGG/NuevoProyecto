@@ -33,6 +33,9 @@ public abstract class EscenaBase extends Scene {
     protected AdministradorEscenas admEscenas;
     // Actividad principal del juego
     protected ControlJuego actividadJuego;
+    //Vidas
+    protected static int vidas;
+    protected static boolean vivo = true;
 
     public EscenaBase() {
         admEscenas = AdministradorEscenas.getInstance();
@@ -81,6 +84,18 @@ public abstract class EscenaBase extends Scene {
             Log.d("cargarImagenMosaico()", "No	se	puede	cargar	la	imagen:	" + archivo);
         }
         return region;
+    }
+    //Vidas NOVA AQUI
+    protected int VidaRestante(int vidas){
+        vidas = vidas-1;
+        return vidas;
+    } ;
+
+    public boolean Muerto(int vidas){
+        if (vidas < 0) {
+            vivo = false;
+        }
+        return vivo;
     }
 
 

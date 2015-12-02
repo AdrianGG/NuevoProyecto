@@ -11,6 +11,7 @@ import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 
@@ -35,6 +36,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionFondo;
     private ITextureRegion regionFondo2;
     private ITextureRegion regionFondo3;
+    private ITextureRegion regionVida1;
+    private ITextureRegion regionVida2;
     private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
     private Sprite obstaculo;
@@ -57,6 +60,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
     public ButtonSprite bSalta;
+    public Sprite bVida1;
+    public Sprite bVida2;
 
 
 
@@ -79,7 +84,8 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         regionPlataforma= cargarImagen("base2.png");
         regionPlataforma2=cargarImagen("base3.png");
         regionPlataforma3= cargarImagen("base4.png");
-
+        regionVida1 = cargarImagen("vida1.png");
+        regionVida2 = cargarImagen("vida2.png");
 
 
     }
@@ -539,6 +545,13 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         };
         bSalta.setScale(0.5f,0.5f);
         attachChild(bSalta);
+
+    bVida1 = new Sprite(708,100,regionVida1,actividadJuego.getVertexBufferObjectManager()) {
+
+    };
+        bVida2 = new Sprite(592,100,regionVida2,actividadJuego.getVertexBufferObjectManager()) {
+
+        };
     }
 
 

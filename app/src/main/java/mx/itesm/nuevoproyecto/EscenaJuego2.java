@@ -39,6 +39,7 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionEnemigo3;
     private ITextureRegion regionEnemigo4;
     private ITextureRegion regionEnemigo5;
+    private TiledTextureRegion regionEnemigoVerde;
     private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
     private Sprite obstaculo;
@@ -88,6 +89,7 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         regionEnemigo3= cargarImagen("engrane3.png");
         regionEnemigo4= cargarImagen("engrane4.png");
         regionEnemigo5= cargarImagen("engrane5.png");
+        regionEnemigoVerde = cargarImagenMosaico("SmithTira.png", 2041,279,1,9);
     }
 
     @Override
