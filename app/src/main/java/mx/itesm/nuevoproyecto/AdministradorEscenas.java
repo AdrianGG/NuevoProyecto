@@ -22,12 +22,13 @@ public class AdministradorEscenas {
     private EscenaBase escenaJuego2;
     private EscenaBase escenaJuego3;
 
+
     // El tipo de escena que se está mostrando
     private TipoEscena tipoEscenaActual = TipoEscena.ESCENA_SPLASH;
     // La escena que se está mostrando
     private EscenaBase escenaActual;
     // El engine para hacer el cambio de escenas
-    private Engine engine;
+    public Engine engine;
 
     // Asigna valores iniciales del administrador
     public static void inicializarAdministrador(ControlJuego actividadJuego, Engine engine) {

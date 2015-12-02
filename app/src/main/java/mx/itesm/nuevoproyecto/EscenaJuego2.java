@@ -61,7 +61,7 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         regionObstaculo= cargarImagen("base1A.png");
         regionSensor= cargarImagen("sensor.png");
         regionPiso = cargarImagen("pisoAzul.png");
-        regionPersonaje = cargarImagenMosaico("mildorosGlitch.png", 2290, 1091, 5, 10);
+        regionPersonaje = cargarImagenMosaico("mildorosGlitch.png", 1815, 1120, 4, 8);
         regionBCamina= cargarImagen("botonAzul3.png");
         regionBRetrocede= cargarImagen("botonAzul2.png");
         regionBSalta= cargarImagen("botonAzul1.png");
@@ -109,11 +109,12 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         attachChild(sensor);
         // personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
         // Animacion Idle del personaje
-        long tiempos[] = new long[50];
-        for(int i=20; i<24; i++) {
+        long tiempos[] = new long[32];
+        for (int i = 16; i < 21; i++) {
             tiempos[i] = 100;
         }
-        personaje.animate(tiempos, 0, tiempos.length - 1, true);
+        personaje.animate(tiempos,0,tiempos.length-1,true);
+        //personaje.animate(tiempos, 0, tiempos.length - 1, true);
         attachChild(personaje);//
 
         // Aqui iran todas las plataformas NOTA: todas se llaman obstaculo o plataforma
@@ -586,8 +587,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                 {
                     unregisterTouchArea(bRetrocede);
                     //El personaje mira hacia la derecha cuando se mueve a esa direccion
-                    long tiempos[] = new long[50];
-                    for(int i=10; i<15; i++) {
+                    long tiempos[] = new long[32];
+                    for(int i=0; i<7; i++) {
                         tiempos[i] = 100;
                     }
 
@@ -598,8 +599,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                 else
                 {
                     if(event.isActionUp()) {
-                        long tiempos[] = new long[50];
-                        for(int i=20; i<24; i++) {
+                        long tiempos[] = new long[32];
+                        for (int i = 16; i < 21; i++) {
                             tiempos[i] = 100;
                         }
                         personaje.animate(tiempos,0,tiempos.length-1,true);
@@ -619,8 +620,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                 unregisterTouchArea(bCamina);
                 if (event.isActionDown())
                 {
-                    long tiempos[] = new long[50];
-                    for(int i=10; i<15; i++) {
+                    long tiempos[] = new long[32];
+                    for(int i=0; i<7; i++) {
                         tiempos[i] = 100;
                     }
                     personaje.animate(tiempos,0,tiempos.length-1,true);
@@ -632,8 +633,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                 {
                     if(event.isActionUp()) {
                         if (event.isActionUp()) {
-                            long tiempos[] = new long[50];
-                            for (int i = 20; i < 24; i++) {
+                            long tiempos[] = new long[32];
+                            for (int i = 16; i < 21; i++) {
                                 tiempos[i] = 100;
                             }
                             personaje.animate(tiempos, 0, tiempos.length - 1, true);
@@ -663,8 +664,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                     //El parámetro avanza*50 sirve para "conservar" el momentum en el salto
                     JumpModifier salto = new JumpModifier(1, xa,xn+(avanza*50), ya, yn, -400);
                     personajeSaltando = true;
-                    long tiempos[] = new long[50];
-                    for (int i = 40; i < 42; i++) {
+                    long tiempos[] = new long[32];
+                    for (int i = 26; i < 28; i++) {
                         tiempos[i] = 200;
                     }
                     personaje.animate(tiempos, 0, tiempos.length - 1, false);
@@ -677,14 +678,14 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                         @Override
                         protected void onModifierFinished(IEntity pItem) {
                             if(bRetrocede.isPressed()||bCamina.isPressed()){
-                                long tiempos[] = new long[50];
+                                long tiempos[] = new long[32];
                                 for(int i=10; i<15; i++) {
                                     tiempos[i] = 100;
                                 }
                                 personaje.animate(tiempos,0,tiempos.length-1,true);
                             }
                             else{
-                                long tiempos[] = new long[50];
+                                long tiempos[] = new long[32];
                                 for (int i = 20; i < 24; i++) {
                                     tiempos[i] = 100;
                                 }
