@@ -3,7 +3,8 @@ package mx.itesm.nuevoproyecto;
 import android.util.Log;
 
 
-
+import org.andengine.audio.music.Music;
+import org.andengine.audio.music.MusicFactory;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -33,6 +34,9 @@ public abstract class EscenaBase extends Scene {
     protected AdministradorEscenas admEscenas;
     // Actividad principal del juego
     protected ControlJuego actividadJuego;
+    //Vidas
+    protected static int vidas;
+    protected static boolean vivo = true;
 
     public EscenaBase() {
         admEscenas = AdministradorEscenas.getInstance();
@@ -42,7 +46,17 @@ public abstract class EscenaBase extends Scene {
         crearEscena();  // Este método debe implementarse en la subclase
     }
 
+    public Music cargarSonidos(String Archivo) {
+        Music musicaFondo = null;
+        try {
+            musicaFondo = MusicFactory.createMusicFromAsset(admEscenas.engine.getMusicManager(), actividadJuego, Archivo);
+        }
+        catch (IOException e) {
+            Log.i("cargarSonidos", "No se puede cargar la musica");
+        }
+        return musicaFondo;
 
+    }
 
     // Método auxiliar para cargar las imágenes de las regiones
     public ITextureRegion cargarImagen(String archivo) {
@@ -81,6 +95,18 @@ public abstract class EscenaBase extends Scene {
             Log.d("cargarImagenMosaico()", "No	se	puede	cargar	la	imagen:	" + archivo);
         }
         return region;
+    }
+    //Vidas NOVA AQUI
+    protected int VidaRestante(int vidas){
+        vidas = vidas-1;
+        return vidas;
+    } ;
+
+    public boolean Muerto(int vidas){
+        if (vidas < 0) {
+            vivo = false;
+        }
+        return vivo;
     }
 
 
