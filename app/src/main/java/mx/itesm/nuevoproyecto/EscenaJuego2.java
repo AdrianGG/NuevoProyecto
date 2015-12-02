@@ -78,6 +78,10 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
             fondo=new Sprite(xF+(3158*i),(ControlJuego.ALTO_CAMARA/2+150),regionFondo,actividadJuego.getVertexBufferObjectManager());
             attachChild(fondo);
         }
+        for(int i = 0; i<=5; i++){
+            fondo=new Sprite(xF+(3158*i),(ControlJuego.ALTO_CAMARA/2+1320),regionFondo,actividadJuego.getVertexBufferObjectManager());
+            attachChild(fondo);
+        }
         //Meta a llegar en el nivel
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+10200,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);

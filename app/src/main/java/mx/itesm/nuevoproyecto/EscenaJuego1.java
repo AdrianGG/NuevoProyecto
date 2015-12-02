@@ -92,6 +92,10 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             fondo=new Sprite(xF+(3158*i),(ControlJuego.ALTO_CAMARA/2+150),regionFondo,actividadJuego.getVertexBufferObjectManager());
             attachChild(fondo);
         }
+        for(int i = 0; i<=5; i++){
+            fondo=new Sprite(xF+(3158*i),(ControlJuego.ALTO_CAMARA/2+1320),regionFondo,actividadJuego.getVertexBufferObjectManager());
+            attachChild(fondo);
+        }
         //CHECAR DONDE ESTARA LA META
         meta= new Sprite(ControlJuego.ANCHO_CAMARA+6000,ControlJuego.ALTO_CAMARA-50,regionMeta,actividadJuego.getVertexBufferObjectManager());
         attachChild(meta);
@@ -333,7 +337,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 if (sensor.collidesWith(this)&&!bSalta.isPressed()){
 
 
-                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()+30));
+                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
 
 
                     personaje.unregisterEntityModifier(paralelo);
