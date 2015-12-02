@@ -38,8 +38,8 @@ public class EscenaHistoria2 extends EscenaBase {
             @Override
             public boolean onAreaTouched(TouchEvent pTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
                 if(pTouchEvent.isActionDown()) {
-                    admEscenas.crearEscenaJuego1();
-                    admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);
+                    admEscenas.crearEscenaJuego2();
+                    admEscenas.setEscena(TipoEscena.ESCENA_JUEGO2);
                     admEscenas.liberarEscenaHistoria2();
                 }
                 return true;
@@ -63,8 +63,8 @@ public class EscenaHistoria2 extends EscenaBase {
 
                     }
                     else{
-                        admEscenas.crearEscenaJuego1();
-                        admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);
+                        admEscenas.crearEscenaJuego2();
+                        admEscenas.setEscena(TipoEscena.ESCENA_JUEGO2);
                         admEscenas.liberarEscenaHistoria2();
                     }
 
