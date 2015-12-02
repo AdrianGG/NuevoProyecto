@@ -645,7 +645,9 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             bVida2.detachSelf();
         }
         if(vidas==0){
-            //Mandar a escena de gamer over
+            admEscenas.crearGameover();
+            admEscenas.setEscena(TipoEscena.ESCENA_GAMEOVER);
+            admEscenas.liberarEscenaJuego1();
         }
         // distancia de personaje-meta para detectar el paso de nivel/
         double d;

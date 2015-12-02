@@ -39,6 +39,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionEnemigo3;
     private ITextureRegion regionEnemigo4;
     private ITextureRegion regionEnemigo5;
+    private ITextureRegion regionVida1;
+    private ITextureRegion regionVida2;
     private TiledTextureRegion regionEnemigoVerde;
     private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
@@ -64,6 +66,9 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
     public ButtonSprite bSalta;
+    public int vidas=2;
+    public Sprite bVida1;
+    public Sprite bVida2;
 
 
     @Override
@@ -672,6 +677,12 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         };
         bRetrocede.setScale(0.5f, 0.5f);
         attachChild(bRetrocede);
+        bVida1 = new Sprite(personaje.getX(),personaje.getY()-200,regionVida1,actividadJuego.getVertexBufferObjectManager());
+        bVida1.setScale(0.5f,0.5f);
+        attachChild(bVida1);
+        bVida2 = new Sprite(personaje.getX(),personaje.getY()-200,regionVida2,actividadJuego.getVertexBufferObjectManager());
+        bVida2.setScale(0.5f,0.5f);
+        attachChild(bVida2);
 
         bSalta = new ButtonSprite(1200, 100, regionBSalta,actividadJuego.getVertexBufferObjectManager()) {
 
@@ -753,6 +764,18 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         bCamina.setPosition(personaje.getX() - 390, personaje.getY() - 300);
         bRetrocede.setPosition(personaje.getX()-500,personaje.getY()-300);
         bSalta.setPosition(personaje.getX() + 500, personaje.getY()-300);
+        bVida1.setPosition(personaje.getX()+bVida1.getWidth()/4, personaje.getY() - 300);
+        bVida2.setPosition(personaje.getX()-bVida2.getWidth()/4, personaje.getY() - 300);
+        //-------------------------------------------------------------------------------------------------
+        //
+        if(vidas<=1){
+            bVida2.detachSelf();
+        }
+        if(vidas==0){
+            admEscenas.crearGameover();
+            admEscenas.setEscena(TipoEscena.ESCENA_GAMEOVER);
+            admEscenas.liberarEscenaJuego2();
+        }
         //-------------------------------------------------------------------------------------------------
         // distancia de personaje-meta para detectar el paso de nivel/
         double d;
