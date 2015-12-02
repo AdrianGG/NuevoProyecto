@@ -694,6 +694,7 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                             super.onModifierFinished(pItem);
                             personajeSaltando = false;
 
+
                         }
 
                     };
