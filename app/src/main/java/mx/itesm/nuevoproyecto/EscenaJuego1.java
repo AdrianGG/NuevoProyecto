@@ -482,6 +482,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                     }
                     personaje.animate(tiempos, 0, tiempos.length - 1, false);
 
+
                     //registerTouchArea(bCamina);
                     //registerTouchArea(bRetrocede);
 

@@ -20,9 +20,15 @@ public class EscenaHistoria2 extends EscenaBase {
 
     @Override
     public void cargarRecursos() {
-        regionSlides = new ITextureRegion[2];
+        regionSlides = new ITextureRegion[8];
         regionSlides[0] = cargarImagen("juego7.jpg");
         regionSlides[1] = cargarImagen("juego8.jpg");
+        regionSlides[2] = cargarImagen("nivel21.jpg");
+        regionSlides[3] = cargarImagen("nivel22.jpg");
+        regionSlides[4] = cargarImagen("nivel23.jpg");
+        regionSlides[5] = cargarImagen("nivel24.jpg");
+        regionSlides[6] = cargarImagen("nivel25.jpg");
+        regionSlides[7] = cargarImagen("nivel26.jpg");
         regionSlideActual=regionSlides[0];
         regionBSkip= cargarImagen("botonazulmenu.png");
         regionBSiguente= cargarImagen("botonrosamenu.png");
@@ -52,7 +58,7 @@ public class EscenaHistoria2 extends EscenaBase {
             @Override
             public boolean onAreaTouched(TouchEvent pTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
                 if(pTouchEvent.isActionDown()) {
-                    if(contador<1){
+                    if(contador<7){
                         contador++;
                         regionSlideActual=regionSlides[contador];
                         EscenaHistoria2.this.detachChild(spriteFondo);
