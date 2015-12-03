@@ -8,8 +8,10 @@ import android.view.MotionEvent;
 
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.JumpModifier;
+import org.andengine.entity.modifier.LoopEntityModifier;
 import org.andengine.entity.modifier.ParallelEntityModifier;
 import org.andengine.entity.modifier.RotationByModifier;
+import org.andengine.entity.modifier.RotationModifier;
 import org.andengine.entity.scene.IOnAreaTouchListener;
 import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.sprite.AnimatedSprite;
@@ -191,9 +193,11 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
             };
 
         };
-        RotationByModifier girar= new RotationByModifier(30,5);
+        RotationModifier rotacion = new RotationModifier(1, 360, 0);
+        LoopEntityModifier girar = new LoopEntityModifier(rotacion);
         enemigo5.registerEntityModifier(girar);
         attachChild(enemigo5);
+      //  enemigo5.registerEntityModifier(girar);
         plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA-1000, ControlJuego.ALTO_CAMARA-450,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
@@ -508,6 +512,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         registerTouchArea(bCamina);
         registerTouchArea(bRetrocede);
         registerTouchArea(bSalta);
+
+
         //Movimiento de izquierda a derecha
         super.onManagedUpdate(pSecondsElapsed);
         px = (float) (personaje.getX()+avanza);
@@ -531,8 +537,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         d= Math.sqrt((xp - xm) * (xp - xm) + (yp - ym) * (yp - ym));
         if (d<120){
             actividadJuego.getEngine().vibrate(100);
-            admEscenas.crearEscenaJuego4();
-            admEscenas.setEscena(TipoEscena.ESCENA_JUEGO4);
+            admEscenas.crearEscenaJuego1();
+            admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);
             admEscenas.liberarEscenaJuego2();
         }
     }

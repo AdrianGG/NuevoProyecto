@@ -10,7 +10,6 @@ package mx.itesm.Glitch;
         ESCENA_ACERCA_DE,
         ESCENA_JUEGO,
         ESCENA_JUEGO2,
-        ESCENA_FISICA,
         ESCENA_INSTRUCCIONES,
         ESCENA_JUEGO1,
         ESCENA_HISTORIA2,
