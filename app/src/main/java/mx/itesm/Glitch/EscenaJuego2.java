@@ -114,6 +114,11 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
 
                     if(vidas==2){
                         vidas--;
+                        long tiempos[] = new long[32];
+                        for(int i=9; i<13; i++) {
+                            tiempos[i] = 100;
+                        }
+                        personaje.animate(tiempos,0,tiempos.length-1,true);
                         detachChild(bVida1);
                         personaje.setPosition(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3);
 
