@@ -34,7 +34,7 @@ public class EscenaJuego extends EscenaBase {
         regionSlides[4] = cargarImagen("juego5.jpg");
         regionSlides[5] = cargarImagen("juego6.jpg");
         regionBSkip= cargarImagen("skipBoton.png");
-        regionBSiguente= cargarImagen("boton2.png");
+        regionBSiguente= cargarImagen("botonNext.png");
         regionSlideActual=regionSlides[0];
 
 

@@ -293,20 +293,7 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
             };
         };;
         attachChild(plataforma3);
-        plataforma3 = new Sprite(ControlJuego.ANCHO_CAMARA, ControlJuego.ALTO_CAMARA+900,	regionPlataforma3,actividadJuego.getVertexBufferObjectManager()){
-            @Override
-            protected void onManagedUpdate(float pSecondsElapsed)
-            {
-                if (sensor.collidesWith(this)&&!bSalta.isPressed()){
-                    personaje.unregisterEntityModifier(paralelo);
-                    personajeSaltando=false;
-                    personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight()+20));
-                }
-
-            };
-        };;
-        attachChild(plataforma3);
-        plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA, ControlJuego.ALTO_CAMARA+1300,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
+        plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA, ControlJuego.ALTO_CAMARA+1000,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
 
@@ -321,7 +308,7 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
             };
         };;
         attachChild(plataforma2);
-        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA-400, ControlJuego.ALTO_CAMARA+1500,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
+        plataforma1 = new Sprite(ControlJuego.ANCHO_CAMARA+800, ControlJuego.ALTO_CAMARA+700,	regionPlataforma,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
