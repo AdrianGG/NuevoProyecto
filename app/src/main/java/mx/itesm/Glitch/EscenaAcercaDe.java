@@ -1,4 +1,4 @@
-package mx.itesm.nuevoproyecto;
+package mx.itesm.Glitch;
 
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.opengl.texture.region.ITextureRegion;
@@ -6,7 +6,8 @@ import org.andengine.opengl.texture.region.ITextureRegion;
 /**
  * Created by A. iram on 01/10/2015.
  */
-public class EscenaInstrucciones extends EscenaBase {
+public class EscenaAcercaDe extends EscenaBase {
+
     // Regiones para imágenes
     private ITextureRegion regionFondo;
     // Sprite para el fondo
@@ -14,7 +15,7 @@ public class EscenaInstrucciones extends EscenaBase {
 
     @Override
     public void cargarRecursos() {
-        regionFondo = cargarImagen("menuinstrucciones.png");
+        regionFondo = cargarImagen("menucreditos.png");
     }
 
     @Override
@@ -28,12 +29,12 @@ public class EscenaInstrucciones extends EscenaBase {
         // Regresar al menú principal
         admEscenas.crearEscenaMenu();
         admEscenas.setEscena(TipoEscena.ESCENA_MENU);
-        admEscenas.liberarEscenaInstrucciones();
+        admEscenas.liberarEscenaAcercaDe();
     }
 
     @Override
     public TipoEscena getTipoEscena() {
-        return TipoEscena.ESCENA_INSTRUCCIONES;
+        return TipoEscena.ESCENA_ACERCA_DE;
     }
 
     @Override

@@ -1,8 +1,9 @@
-package mx.itesm.nuevoproyecto;
+package mx.itesm.Glitch;
 
 /**
  * Escena echa por:
  * Created by Adrian on 01/12/2015.
+ *
  */
 import android.view.MotionEvent;
 
@@ -18,8 +19,9 @@ import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 
-public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
+public class EscenaJuego3 extends EscenaBase implements IOnAreaTouchListener {
     private TiledTextureRegion regionPersonaje;
+    private TiledTextureRegion regionPersonajeC;
     private ITextureRegion regionBCamina;
     private ITextureRegion regionBRetrocede;
     private ITextureRegion regionBSalta;
@@ -31,12 +33,11 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     private ITextureRegion regionPlataforma2;
     private ITextureRegion regionPlataforma3;
     private ITextureRegion regionFondo;
-    private ITextureRegion regionEnemigo1;
-    private ITextureRegion regionEnemigo2;
     private ITextureRegion regionEnemigo3;
     private ITextureRegion regionEnemigo4;
     private ITextureRegion regionEnemigo5;
-    private TiledTextureRegion regionEnemigoVerde;
+    private ITextureRegion regionVida1;
+    private ITextureRegion regionVida2;
     private boolean personajeSaltando=false; // siempre se inicializa en falso
     private AnimatedSprite personaje;
     private Sprite obstaculo;
@@ -61,33 +62,27 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     public ButtonSprite bCamina;
     public ButtonSprite bRetrocede;
     public ButtonSprite bSalta;
+    public int vidas=2;
     public Sprite bVida1;
     public Sprite bVida2;
-    public int vidas=2;
-    private ITextureRegion regionVida1;
-    private ITextureRegion regionVida2;
-
 
     @Override
     public void cargarRecursos() {
         regionFondo= cargarImagen("glitchfondomasalto.png");
-        regionObstaculo= cargarImagen("base1A.png");
+        regionObstaculo= cargarImagen("base1.png");
         regionSensor= cargarImagen("sensor.png");
-        regionPiso = cargarImagen("pisoAzul.png");
-        regionPersonaje = cargarImagenMosaico("mildorosGlitch.png", 1815, 1120, 4, 8);
-        regionBCamina= cargarImagen("botonAzul3.png");
-        regionBRetrocede= cargarImagen("botonAzul2.png");
-        regionBSalta= cargarImagen("botonAzul1.png");
-        regionMeta=cargarImagen("meta3.png");
-        regionPlataforma= cargarImagen("base2A.png");
-        regionPlataforma2=cargarImagen("base3A.png");
-        regionPlataforma3= cargarImagen("base4A.png");
-        regionEnemigo3= cargarImagen("engrane3rosa.png");
-        regionEnemigo4= cargarImagen("engrane4rosa.png");
-        regionEnemigo5= cargarImagen("engrane5rosa.png");
-        //regionEnemigoVerde = cargarImagenMosaico("SmithTira.png", 2041,279,1,9);//
-        regionVida1 = cargarImagen("vida1.png");
-        regionVida2 = cargarImagen("vida2.png");
+        regionPiso = cargarImagen("pisoRosa.png");
+        regionPersonaje = cargarImagenMosaico("mildoros.png", 2290, 1091, 5, 10);
+        regionBCamina= cargarImagen("boton2.png");
+        regionBRetrocede= cargarImagen("boton3.png");
+        regionBSalta= cargarImagen("boton1.png");
+        regionMeta=cargarImagen("meta2.png");
+        regionPlataforma= cargarImagen("base2.png");
+        regionPlataforma2=cargarImagen("base3.png");
+        regionPlataforma3= cargarImagen("base4.png");
+        regionEnemigo3= cargarImagen("engrane3azul.png");
+        regionEnemigo4= cargarImagen("engrane4azul.png");
+        regionEnemigo5= cargarImagen("engrane5azul.png");
     }
 
     @Override
@@ -132,12 +127,11 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         attachChild(sensor);
         // personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager());
         // Animacion Idle del personaje
-        long tiempos[] = new long[32];
-        for (int i = 16; i < 21; i++) {
+        long tiempos[] = new long[50];
+        for(int i=20; i<24; i++) {
             tiempos[i] = 100;
         }
-        personaje.animate(tiempos,0,tiempos.length-1,true);
-        //personaje.animate(tiempos, 0, tiempos.length - 1, true);
+        personaje.animate(tiempos, 0, tiempos.length - 1, true);
         attachChild(personaje);//
 
         // Aqui iran todas las plataformas NOTA: todas se llaman obstaculo o plataforma
@@ -615,8 +609,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                 {
                     unregisterTouchArea(bRetrocede);
                     //El personaje mira hacia la derecha cuando se mueve a esa direccion
-                    long tiempos[] = new long[32];
-                    for(int i=0; i<7; i++) {
+                    long tiempos[] = new long[50];
+                    for(int i=10; i<15; i++) {
                         tiempos[i] = 100;
                     }
 
@@ -627,8 +621,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                 else
                 {
                     if(event.isActionUp()) {
-                        long tiempos[] = new long[32];
-                        for (int i = 16; i < 21; i++) {
+                        long tiempos[] = new long[50];
+                        for(int i=20; i<24; i++) {
                             tiempos[i] = 100;
                         }
                         personaje.animate(tiempos,0,tiempos.length-1,true);
@@ -648,8 +642,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                 unregisterTouchArea(bCamina);
                 if (event.isActionDown())
                 {
-                    long tiempos[] = new long[32];
-                    for(int i=0; i<7; i++) {
+                    long tiempos[] = new long[50];
+                    for(int i=10; i<15; i++) {
                         tiempos[i] = 100;
                     }
                     personaje.animate(tiempos,0,tiempos.length-1,true);
@@ -661,8 +655,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                 {
                     if(event.isActionUp()) {
                         if (event.isActionUp()) {
-                            long tiempos[] = new long[32];
-                            for (int i = 16; i < 21; i++) {
+                            long tiempos[] = new long[50];
+                            for (int i = 20; i < 24; i++) {
                                 tiempos[i] = 100;
                             }
                             personaje.animate(tiempos, 0, tiempos.length - 1, true);
@@ -676,6 +670,12 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         };
         bRetrocede.setScale(0.5f, 0.5f);
         attachChild(bRetrocede);
+        bVida1 = new Sprite(personaje.getX(),personaje.getY()-200,regionVida1,actividadJuego.getVertexBufferObjectManager());
+        bVida1.setScale(0.5f,0.5f);
+        attachChild(bVida1);
+        bVida2 = new Sprite(personaje.getX(),personaje.getY()-200,regionVida2,actividadJuego.getVertexBufferObjectManager());
+        bVida2.setScale(0.5f,0.5f);
+        attachChild(bVida2);
 
         bSalta = new ButtonSprite(1200, 100, regionBSalta,actividadJuego.getVertexBufferObjectManager()) {
 
@@ -692,8 +692,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                     //El parámetro avanza*50 sirve para "conservar" el momentum en el salto
                     JumpModifier salto = new JumpModifier(1, xa,xn+(avanza*50), ya, yn, -400);
                     personajeSaltando = true;
-                    long tiempos[] = new long[32];
-                    for (int i = 26; i < 28; i++) {
+                    long tiempos[] = new long[50];
+                    for (int i = 40; i < 42; i++) {
                         tiempos[i] = 200;
                     }
                     personaje.animate(tiempos, 0, tiempos.length - 1, false);
@@ -706,22 +706,21 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
                         @Override
                         protected void onModifierFinished(IEntity pItem) {
                             if(bRetrocede.isPressed()||bCamina.isPressed()){
-                                long tiempos[] = new long[32];
-                                for(int i=0; i<7; i++) {
+                                long tiempos[] = new long[50];
+                                for(int i=10; i<15; i++) {
                                     tiempos[i] = 100;
                                 }
                                 personaje.animate(tiempos,0,tiempos.length-1,true);
                             }
                             else{
-                                long tiempos[] = new long[32];
-                                for (int i = 16; i < 21; i++) {
+                                long tiempos[] = new long[50];
+                                for (int i = 20; i < 24; i++) {
                                     tiempos[i] = 100;
                                 }
                                 personaje.animate(tiempos, 0, tiempos.length - 1, true);
                             }
                             super.onModifierFinished(pItem);
                             personajeSaltando = false;
-
 
                         }
 
@@ -738,7 +737,6 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         bSalta.setScale(0.5f,0.5f);
         attachChild(bSalta);
     }
-
 
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
@@ -757,6 +755,18 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         bCamina.setPosition(personaje.getX() - 390, personaje.getY() - 300);
         bRetrocede.setPosition(personaje.getX()-500,personaje.getY()-300);
         bSalta.setPosition(personaje.getX() + 500, personaje.getY()-300);
+        bVida1.setPosition(personaje.getX()+bVida1.getWidth()/4, personaje.getY() - 300);
+        bVida2.setPosition(personaje.getX()-bVida2.getWidth()/4, personaje.getY() - 300);
+        //-------------------------------------------------------------------------------------------------
+        //
+        if(vidas<=1){
+            bVida2.detachSelf();
+        }
+        if(vidas==0){
+            admEscenas.crearGameover();
+            admEscenas.setEscena(TipoEscena.ESCENA_GAMEOVER);
+            admEscenas.liberarEscenaJuego3();
+        }
         //-------------------------------------------------------------------------------------------------
         // distancia de personaje-meta para detectar el paso de nivel/
         double d;
@@ -767,9 +777,9 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         d= Math.sqrt((xp - xm) * (xp - xm) + (yp - ym) * (yp - ym));
         if (d<120){
             actividadJuego.getEngine().vibrate(100);
-            admEscenas.crearEscenaJuego3();
-            admEscenas.setEscena(TipoEscena.ESCENA_JUEGO3);
-            admEscenas.liberarEscenaJuego2();
+            admEscenas.crearEscenaMenu();
+            admEscenas.setEscena(TipoEscena.ESCENA_MENU);
+            admEscenas.liberarEscenaJuego3();
         }
     }
 
@@ -777,12 +787,12 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
     public void onBackKeyPressed() {
         admEscenas.crearEscenaMenu();
         admEscenas.setEscena(TipoEscena.ESCENA_MENU);
-        admEscenas.liberarEscenaJuego2();
+        admEscenas.liberarEscenaJuego3();
     }
 
     @Override
     public TipoEscena getTipoEscena() {
-        return TipoEscena.ESCENA_JUEGO2;
+        return TipoEscena.ESCENA_JUEGO3;
     }
 
     @Override
@@ -806,3 +816,4 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         return true;
     }
 }
+

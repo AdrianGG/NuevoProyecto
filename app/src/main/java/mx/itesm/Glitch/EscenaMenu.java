@@ -1,4 +1,4 @@
-package mx.itesm.nuevoproyecto;
+package mx.itesm.Glitch;
 
 
 
@@ -13,7 +13,6 @@ import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.opengl.texture.region.ITextureRegion;
 
-import java.security.PublicKey;
 import java.util.Random;
 
 /**

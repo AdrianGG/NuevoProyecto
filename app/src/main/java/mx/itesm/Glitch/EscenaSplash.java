@@ -1,19 +1,9 @@
-package mx.itesm.nuevoproyecto;
-
-import android.content.Context;
-import android.util.Log;
+package mx.itesm.Glitch;
 
 import org.andengine.audio.music.Music;
-import org.andengine.audio.music.MusicFactory;
-import org.andengine.audio.music.MusicManager;
-import org.andengine.engine.Engine;
 import org.andengine.entity.scene.background.SpriteBackground;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.ui.activity.BaseActivity;
-
-import java.io.IOException;
-import java.security.PublicKey;
 
 /**
  * Created by A. iram on 01/10/2015.

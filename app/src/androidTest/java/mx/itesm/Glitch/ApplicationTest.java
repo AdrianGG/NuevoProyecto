@@ -1,4 +1,4 @@
-package mx.itesm.nuevoproyecto;
+package mx.itesm.Glitch;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
