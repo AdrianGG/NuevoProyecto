@@ -7,7 +7,9 @@ import org.andengine.entity.sprite.Sprite;
  */
 public class EscenaPerder extends EscenaBase {
     Sprite spritePerdiste;
+
     @Override
+
     public void cargarRecursos() {
         spritePerdiste = cargarSprite(ControlJuego.ANCHO_CAMARA/2, ControlJuego.ALTO_CAMARA/2,cargarImagen("final.png"));
 
@@ -18,6 +20,8 @@ public class EscenaPerder extends EscenaBase {
     @Override
     public void crearEscena() {
         attachChild(spritePerdiste);
+        ControlJuego.camara.setChaseEntity(null);
+        ControlJuego.camara.setCenter(ControlJuego.ANCHO_CAMARA / 2, ControlJuego.ALTO_CAMARA / 2);
 
     }
 

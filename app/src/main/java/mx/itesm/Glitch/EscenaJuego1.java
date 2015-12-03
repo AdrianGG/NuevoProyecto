@@ -126,6 +126,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                     }
                     else if(vidas==1){
                         System.out.println("MORISTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                       // admEscenas.liberarEscenaJuego1();
+                      /*  ControlJuego.camara.setChaseEntity(null);
+                        ControlJuego.camara.setCenter(ControlJuego.ANCHO_CAMARA/2,ControlJuego.ALTO_CAMARA/2);
+                        admEscenas.crearEscenaPerder();
+                        admEscenas.setEscena(TipoEscena.ESCENA_PERDER);*/
+
 
                     }
 

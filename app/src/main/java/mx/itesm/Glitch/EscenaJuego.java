@@ -50,8 +50,11 @@ public class EscenaJuego extends EscenaBase {
             @Override
             public boolean onAreaTouched(TouchEvent pTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
                 if(pTouchEvent.isActionDown()) {
-                    admEscenas.crearEscenaJuego1();
+                  /*  admEscenas.crearEscenaJuego1();
                     admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);
+                    admEscenas.liberarEscenaJuego();*/
+                    admEscenas.crearEscenaJuego2();
+                    admEscenas.setEscena(TipoEscena.ESCENA_JUEGO2);
                     admEscenas.liberarEscenaJuego();
                 }
                 return true;
