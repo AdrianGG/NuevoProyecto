@@ -110,23 +110,23 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         personaje= new AnimatedSprite(ControlJuego.ANCHO_CAMARA-1000, ControlJuego.ALTO_CAMARA/3,	regionPersonaje, actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed){
-                if(this.getY() < ControlJuego.ALTO_CAMARA/3 -800){
+                if(this.getY() < ControlJuego.ALTO_CAMARA/3 -800 || this.getX()>ControlJuego.ANCHO_CAMARA+300){
                     //System.out.println("MORIÍ");
 
                     if(vidas==2){
                         vidas--;
-                        this.detachChild(bVida1);
+                        detachChild(bVida1);
                         personaje.setPosition(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3);
 
                     }
                     else if(vidas==1){
-                        personaje.setPosition(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3);
+                      //  personaje.setPosition(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3);
                         System.out.println("MORISTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                         // admEscenas.liberarEscenaJuego1();
-                      /*  ControlJuego.camara.setChaseEntity(null);
+                        ControlJuego.camara.setChaseEntity(null);
                         ControlJuego.camara.setCenter(ControlJuego.ANCHO_CAMARA/2,ControlJuego.ALTO_CAMARA/2);
                         admEscenas.crearEscenaPerder();
-                        admEscenas.setEscena(TipoEscena.ESCENA_PERDER);*/
+                        admEscenas.setEscena(TipoEscena.ESCENA_PERDER);
 
 
                     }
