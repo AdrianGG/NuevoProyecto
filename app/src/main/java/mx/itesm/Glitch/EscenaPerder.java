@@ -1,5 +1,5 @@
-package mx.itesm.nuevoproyecto;
-
+//package mx.itesm.nuevoproyecto;
+package mx.itesm.Glitch;
 import org.andengine.entity.sprite.Sprite;
 
 /**
