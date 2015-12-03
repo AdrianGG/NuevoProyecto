@@ -124,7 +124,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                         vidas--;
                         detachChild(bVida1);
                         long tiempos[] = new long[50];
-                        for (int i = 24; i < 28; i++) {
+                        for (int i = 24; i < 27; i++) {
                             tiempos[i] = 100;
                         }
                         personaje.animate(tiempos,0,tiempos.length-1,true);

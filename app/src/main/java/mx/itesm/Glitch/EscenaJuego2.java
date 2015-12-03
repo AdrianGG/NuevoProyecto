@@ -572,9 +572,8 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         float ym= meta.getY();
         d= Math.sqrt((xp - xm) * (xp - xm) + (yp - ym) * (yp - ym));
         if (d<120){
-            actividadJuego.getEngine().vibrate(100);
-            admEscenas.crearEscenaJuego1();
-            admEscenas.setEscena(TipoEscena.ESCENA_JUEGO1);
+            admEscenas.crearEscenaMenu();
+            admEscenas.setEscena(TipoEscena.ESCENA_MENU);
             admEscenas.liberarEscenaJuego2();
         }
     }
