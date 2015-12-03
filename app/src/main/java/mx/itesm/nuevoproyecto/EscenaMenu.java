@@ -71,7 +71,8 @@ public class EscenaMenu extends EscenaBase {
     public void crearEscena() {
         if(EscenaJuego1.musicaFondo!=null){
             if(EscenaJuego1.musicaFondo.isPlaying()){
-                EscenaJuego1.musicaFondo.release();
+                EscenaJuego1.musicaFondo.stop();
+                //EscenaJuego1.musicaFondo.release();
             }
 
         }

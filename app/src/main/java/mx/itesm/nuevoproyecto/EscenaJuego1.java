@@ -12,7 +12,6 @@ import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
-import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 
@@ -121,6 +120,14 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                 if(this.getY() < ControlJuego.ALTO_CAMARA/3 -800){
                     //System.out.println("MORIÍ");
                     personaje.setPosition(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3);
+                    if(vidas==2){
+                        vidas--;
+                        detachChild(bVida1);
+                    }
+                    else if(vidas==1){
+                        System.out.println("MORISTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+                    }
 
 
                 }
@@ -301,9 +308,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
                     personaje.unregisterEntityModifier(paralelo);
                     personajeSaltando=false;
                     personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
-
                 }
-
             };
         };;
         attachChild(plataforma2); //3ra en el nivel1*/
@@ -320,7 +325,7 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
             };
         };;
         attachChild(plataforma1);
-       plataforma3 = new Sprite(ControlJuego.ANCHO_CAMARA-1000, ControlJuego.ALTO_CAMARA-150,	regionPlataforma3,actividadJuego.getVertexBufferObjectManager()){
+        plataforma3 = new Sprite(ControlJuego.ANCHO_CAMARA-1000, ControlJuego.ALTO_CAMARA-150,	regionPlataforma3,actividadJuego.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed)
             {
@@ -349,15 +354,15 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         attachChild(plataforma1); //5ta en el nivel1
 
         //plataforma2 = new Sprite(ControlJuego.ANCHO_CAMARA+2550, ControlJuego.ALTO_CAMARA-240,	regionPlataforma2,actividadJuego.getVertexBufferObjectManager()){
-          //  @Override
+        //  @Override
         //    protected void onManagedUpdate(float pSecondsElapsed)
-      //      {
-    //            if (sensor.collidesWith(this)&&!bSalta.isPressed()){
-  //                  personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
+        //      {
+        //            if (sensor.collidesWith(this)&&!bSalta.isPressed()){
+        //                  personaje.setPosition(personaje.getX(), this.getY() + (this.getHeight() + 30));
 
 //                }
 
-          //  };
+        //  };
         //};;
         //attachChild(plataforma2); //6ta en el nivel1
 
@@ -676,16 +681,12 @@ public class EscenaJuego1 extends EscenaBase implements IOnAreaTouchListener {
         return TipoEscena.ESCENA_JUEGO1;
     }
 
-    @Override
     public void liberarEscena() {
-        //Estas dos condiciones resetean el centro de la cámara para que otras escenas no se queden con el
-        //de esta. NOTAS: se debe respetar el orden, se espera que este al liberar las escenas de todos los niveles
         ControlJuego.camara.setChaseEntity(null);
         ControlJuego.camara.setCenter(ControlJuego.ANCHO_CAMARA/2,ControlJuego.ALTO_CAMARA/2);
         //---------------------------------------------------------------------------------------------------------
         this.detachSelf();
         this.dispose();
-
     }
 
     @Override
