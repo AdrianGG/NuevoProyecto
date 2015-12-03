@@ -1,9 +1,8 @@
 package mx.itesm.Glitch;
 
-/**
- * Escena echa por:
- * Created by Adrian on 01/12/2015.
- */
+/*
+*
+*/
 import android.view.MotionEvent;
 
 import org.andengine.entity.IEntity;
@@ -188,7 +187,23 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         enemigo5 = new Sprite(ControlJuego.ANCHO_CAMARA-1700, ControlJuego.ALTO_CAMARA-25,	regionEnemigo5,actividadJuego.getVertexBufferObjectManager()) {
             protected void onManagedUpdate(float pSecondsElapsed) {
                 if(personaje.collidesWith(this)){
-                    vidas --;
+                    if(vidas==2){
+                        vidas--;
+                        detachChild(bVida1);
+                        personaje.setPosition(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3);
+
+                    }
+                    else if(vidas==1){
+                        //  personaje.setPosition(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3);
+                        System.out.println("MORISTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        // admEscenas.liberarEscenaJuego1();
+                        ControlJuego.camara.setChaseEntity(null);
+                        ControlJuego.camara.setCenter(ControlJuego.ANCHO_CAMARA/2,ControlJuego.ALTO_CAMARA/2);
+                        admEscenas.crearEscenaPerder();
+                        admEscenas.setEscena(TipoEscena.ESCENA_PERDER);
+
+
+                    }
                 }
             };
 
@@ -344,7 +359,23 @@ public class EscenaJuego2 extends EscenaBase implements IOnAreaTouchListener {
         enemigo3 = new Sprite(ControlJuego.ANCHO_CAMARA+800, ControlJuego.ALTO_CAMARA+1500,	regionEnemigo3,actividadJuego.getVertexBufferObjectManager()) {
             protected void onManagedUpdate(float pSecondsElapsed) {
                 if(personaje.collidesWith(this)){
-                    vidas --;
+                    if(vidas==2){
+                        vidas--;
+                        detachChild(bVida1);
+                        personaje.setPosition(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3);
+
+                    }
+                    else if(vidas==1){
+                        //  personaje.setPosition(ControlJuego.ANCHO_CAMARA/4, ControlJuego.ALTO_CAMARA/3);
+                        System.out.println("MORISTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        // admEscenas.liberarEscenaJuego1();
+                        ControlJuego.camara.setChaseEntity(null);
+                        ControlJuego.camara.setCenter(ControlJuego.ANCHO_CAMARA/2,ControlJuego.ALTO_CAMARA/2);
+                        admEscenas.crearEscenaPerder();
+                        admEscenas.setEscena(TipoEscena.ESCENA_PERDER);
+
+
+                    }
                 }
             };
         };
