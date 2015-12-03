@@ -56,6 +56,7 @@ public class EscenaJuego extends EscenaBase {
                     admEscenas.crearEscenaJuego2();
                     admEscenas.setEscena(TipoEscena.ESCENA_JUEGO2);
                     admEscenas.liberarEscenaJuego();
+
                 }
                 return true;
             }

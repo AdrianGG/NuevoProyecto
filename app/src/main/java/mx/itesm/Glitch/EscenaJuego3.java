@@ -1,8 +1,6 @@
 package mx.itesm.Glitch;
 
 /**
- * Escena echa por:
- * Created by Adrian on 01/12/2015.
  *
  */
 import android.view.MotionEvent;

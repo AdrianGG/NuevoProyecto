@@ -16,5 +16,6 @@ package mx.itesm.Glitch;
         ESCENA_HISTORIA2,
         ESCENA_JUEGO3,
        ESCENA_GAMEOVER,
-        ESCENA_PERDER
+        ESCENA_PERDER,
+    ESCENA_JUEGO4
  }

@@ -23,6 +23,7 @@ public class AdministradorEscenas {
     private EscenaBase escenaJuego3;
     private EscenaBase GameOver;
     private EscenaBase escenaPerder;
+    private EscenaBase escenaJuego4;
 
 
     // El tipo de escena que se está mostrando
@@ -102,6 +103,8 @@ public class AdministradorEscenas {
             case ESCENA_PERDER:
                 setEscenaBase(escenaPerder);
                 break;
+            case ESCENA_JUEGO4:
+                setEscenaBase(escenaJuego4);
         }
     }
 
@@ -140,6 +143,15 @@ public class AdministradorEscenas {
     public void liberarEscenaAcercaDe() {
         escenaAcercaDe.liberarEscena();
         escenaAcercaDe = null;
+    }
+    public void crearEscenaJuego4() {
+        // Carga los recursos
+        escenaJuego4 = new EscenaAcercaDe();
+    }
+
+    public void liberarEscenaJuego4(){
+        escenaJuego4.liberarEscena();
+        escenaJuego4=null;
     }
 
     public void crearEscenaInstrucciones(){
